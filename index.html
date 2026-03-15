@@ -391,12 +391,12 @@ footer a:hover{color:var(--gr)}
 }
 </style>
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JL1VR32BJF"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+  gtag('config', 'G-JL1VR32BJF', { anonymize_ip: true });
 </script>
 <script type="application/ld+json">
 {
@@ -1031,6 +1031,7 @@ function ctpage(){
   if(s.email)links.push({i:'@',l:s.email,h:'mailto:'+s.email});
   if(s.linkedin)links.push({i:'in',l:'LinkedIn / ActuaireX',h:s.linkedin});
   if(s.tiktok)links.push({i:'tt',l:'TikTok / @actuairex',h:s.tiktok});
+  if(s.selar)links.push({i:'$',l:'Boutique Selar',h:s.selar});
   document.getElementById('clinks').innerHTML=links.map(function(lk){
     return '<a href="'+lk.h+'" class="cl" target="_blank"><div class="ci">'+lk.i+'</div>'+lk.l+'</a>';
   }).join('');
@@ -1050,7 +1051,7 @@ async function sct(){
   var btn=document.querySelector('#page-contact .btn-g');
   btn.textContent='Envoi...';btn.style.opacity='0.6';
   try{
-    var r=await fetch('https://formspree.io/f/XXXXXXXX',{
+    var r=await fetch('https://formspree.io/f/xbdzaknw',{
       method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({name:name,email:email,subject:subject,message:msg})
     });
@@ -1091,7 +1092,7 @@ function loadDisqus(articleId, articleTitle){
   if(!container)return;
   container.style.display='block';
   var d=document, s=d.createElement('script');
-  s.src='https://actuairex.disqus.com/embed.js';
+  s.src='https://https-actuairex-netlify-app.disqus.com/embed.js';
   s.setAttribute('data-timestamp',+new Date());
   window.disqus_config=function(){
     this.page.url='https://actuairex.netlify.app/article/'+articleId;

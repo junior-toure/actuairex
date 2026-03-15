@@ -7,7 +7,9 @@
     "linkedin": "https://linkedin.com/in/actuairex",
     "tiktok": "https://tiktok.com/@actuairex",
     "pays": "Côte d'Ivoire",
-    "annee_creation": "2025"
+    "annee_creation": "2025",
+    "substack": "https://actuairex.substack.com",
+    "selar": "https://selar.com/m/dramanesiejuniortoure"
   },
   "apropos": {
     "titre": "Qui est ActuaireX ?",
@@ -19,9 +21,21 @@
       "Ici tu trouveras des articles de fond, des vidéos courtes, des outils pratiques et des calculateurs — tout pour progresser à ton rythme."
     ],
     "valeurs": [
-      { "icone": "◈", "titre": "Clarté", "texte": "Expliquer les concepts complexes avec des mots simples et des exemples concrets." },
-      { "icone": "◉", "titre": "Rigueur", "texte": "Des contenus vérifiés, fondés sur des sources académiques et professionnelles sérieuses." },
-      { "icone": "◎", "titre": "Accessibilité", "texte": "Des ressources gratuites, en français, adaptées au contexte africain et francophone." }
+      {
+        "icone": "◈",
+        "titre": "Clarté",
+        "texte": "Expliquer les concepts complexes avec des mots simples et des exemples concrets."
+      },
+      {
+        "icone": "◉",
+        "titre": "Rigueur",
+        "texte": "Des contenus vérifiés, fondés sur des sources académiques et professionnelles sérieuses."
+      },
+      {
+        "icone": "◎",
+        "titre": "Accessibilité",
+        "texte": "Des ressources gratuites, en français, adaptées au contexte africain et francophone."
+      }
     ]
   }
 }
