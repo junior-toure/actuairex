@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://actuairex.netlify.app/</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://actuairex.netlify.app/"/>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://actuairex.netlify.app/#articles</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Vidéos -->
+  <url>
+    <loc>https://actuairex.netlify.app/#videos</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projets -->
+  <url>
+    <loc>https://actuairex.netlify.app/#projets</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- À propos -->
+  <url>
+    <loc>https://actuairex.netlify.app/#apropos</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Devenir actuaire -->
+  <url>
+    <loc>https://actuairex.netlify.app/#devenir</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Glossaire -->
+  <url>
+    <loc>https://actuairex.netlify.app/#glossaire</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Ressources -->
+  <url>
+    <loc>https://actuairex.netlify.app/#ressources</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://actuairex.netlify.app/#contact</loc>
+    <lastmod>2025-03-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
