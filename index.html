@@ -757,13 +757,18 @@ function acard(a){
 }
 function vcard(v){
   var ic=v.plateforme==='TikTok'?'♪':'►';
-  return '<div class="vc" onclick="window.open(\''+ v.url +'\',\'_blank\')">'+
-    '<div class="vt"><div class="vi">'+ic+'</div>'+
-    '<span class="vp">'+v.plateforme+'</span><span class="vd">'+v.duree+'</span></div>'+
-    '<div class="vtitle">'+v.titre+'</div>'+
-    '<div class="vdesc">'+v.description+'</div>'+
-    '<div class="vdate">'+fd(v.date)+'</div></div>';
+  var div=document.createElement('div');
+  div.className='vc';
+  div.onclick=function(){window.open(v.url,'_blank');};
+  div.innerHTML='<div class="vt"><div class="vi">'+ic+'</div>'
+    +'<span class="vp">'+v.plateforme+'</span>'
+    +'<span class="vd">'+v.duree+'</span></div>'
+    +'<div class="vtitle">'+v.titre+'</div>'
+    +'<div class="vdesc">'+v.description+'</div>'
+    +'<div class="vdate">'+fd(v.date)+'</div>';
+  return div.outerHTML;
 }
+
 function homearts(){document.getElementById('ha').innerHTML=D.arts.slice(0,3).map(acard).join('')}
 function homevids(){document.getElementById('hv').innerHTML=D.vids.slice(0,4).map(vcard).join('')}
 function artpage(){
@@ -815,18 +820,23 @@ function rart(id){
 }
 function vidpage(){document.getElementById('vg').innerHTML=D.vids.map(vcard).join('')}
 function projpage(){
-  document.getElementById('pjl').innerHTML=D.projs.map(function(p){
-    return '<div class="pj"><div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+
-      '<span class="lbl">'+p.categorie+'</span>'+
-      '<span class="lbl lbl-g">'+p.tag+'</span>'+
-      (p.disponible?'':\'<span class="lbl lbl-d">Bient\u00f4t</span>')+
-      '</div><h3>'+p.titre+'</h3><p>'+p.description+'</p>'+
-      '<div class="pjf"><span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'+
-      (p.disponible?'<a href="'+p.lien+'" class="btn btn-o" style="padding:8px 18px;font-size:11px" target="_blank">Voir →</a>':
-      '<span style="font-size:11px;color:var(--td)">En préparation</span>')+
-      '</div></div>';
-  }).join('');
+  var out='';
+  D.projs.forEach(function(p){
+    var badges='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
+    if(!p.disponible) badges+=' <span class="lbl lbl-d">Bientôt</span>';
+    var action=p.disponible
+      ? '<a href="'+p.lien+'" class="btn btn-o" style="padding:8px 18px;font-size:11px" target="_blank">Voir &rarr;</a>'
+      : '<span style="font-size:11px;color:var(--td)">En préparation</span>';
+    out+='<div class="pj">'
+      +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badges+'</div>'
+      +'<h3>'+p.titre+'</h3>'
+      +'<p>'+p.description+'</p>'
+      +'<div class="pjf"><span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
+      +action+'</div></div>';
+  });
+  document.getElementById('pjl').innerHTML=out;
 }
+
 function appage(){
   if(!D.cfg)return;
   var ap=D.cfg.apropos;
@@ -1000,6 +1010,20 @@ function closeModal(e){
   document.body.style.overflow='';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+
+function fartsCat(btn){
+  var c=btn.dataset.cat;
+  document.querySelectorAll('#af .fbtn').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  artgrid(c==='Tous'?D.arts:D.arts.filter(function(a){return a.categorie===c}));
+}
+function fresCat(btn){
+  var t=btn.dataset.type;
+  document.querySelectorAll('#rf .fbtn').forEach(function(b){b.classList.remove('on')});
+  btn.classList.add('on');
+  rres(t==='Tous'?D.ress:D.ress.filter(function(r){return r.type===t}));
+}
 
 function ctpage(){
   if(!D.cfg)return;
