@@ -514,7 +514,7 @@ footer a:hover{color:var(--gr)}
         <p>Vidéos courtes sur l'actuariat. Nouveau contenu chaque semaine.</p>
       </div>
       <a id="tkbtn" href="#" target="_blank" class="btn btn-g">Voir sur TikTok →</a>
-      <a id="ytbtn" href="https://youtube.com/@actuairex" target="_blank" class="btn btn-o" style="margin-left:.75rem">Voir sur YouTube →</a>
+      <a id="ytbtn" href="https://youtube.com/@actuairex" target="_blank" class="btn btn-o" style="margin-left:.75rem">Voir sur YouTube -&gt;</a>
     </div>
   </div>
 </div>
@@ -706,6 +706,7 @@ footer a:hover{color:var(--gr)}
 
 <script>
 var D={};
+
 function go(p,x){
   try{if(history.pushState)history.pushState(null,null,'#'+p);}catch(e){}
   document.querySelectorAll('.page').forEach(function(e){e.classList.remove('on')});
@@ -713,133 +714,176 @@ function go(p,x){
   if(!el)return;
   el.classList.add('on');
   window.scrollTo(0,0);
-  document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('on',a.dataset.p===p)});
-  var titles={'accueil':'ActuaireX - Comprendre l actuariat simplement',
-    'articles':'Articles — ActuaireX','videos':'Vidéos — ActuaireX',
-    'projets':'Projets — ActuaireX','apropos':'À propos — ActuaireX',
-    'devenir':'Devenir actuaire — ActuaireX','glossaire':'Glossaire actuariel — ActuaireX',
-    'ressources':'Ressources — ActuaireX','contact':'Contact — ActuaireX'};
+  document.querySelectorAll('nav a').forEach(function(a){
+    a.classList.toggle('on',a.dataset.p===p);
+  });
+  var titles={
+    accueil:'ActuaireX - Comprendre l actuariat simplement',
+    articles:'Articles - ActuaireX',
+    videos:'Videos - ActuaireX',
+    projets:'Projets - ActuaireX',
+    apropos:'A propos - ActuaireX',
+    devenir:'Devenir actuaire - ActuaireX',
+    glossaire:'Glossaire actuariel - ActuaireX',
+    ressources:'Ressources - ActuaireX',
+    contact:'Contact - ActuaireX'
+  };
   if(titles[p])document.title=titles[p];
   document.getElementById('mn').classList.remove('open');
-  document.getElementById('mbtn').textContent='☰';
+  document.getElementById('mbtn').textContent='\u2630';
   if(p==='article'&&x!==undefined)rart(x);
+  if(p==='calc'){calcVP();calcRente();calcPrime();calcVaR();}
 }
+
 function tnav(){
   var n=document.getElementById('mn'),b=document.getElementById('mbtn');
   n.classList.toggle('open');
-  b.textContent=n.classList.contains('open')?'✕':'☰';
+  b.textContent=n.classList.contains('open')?'X':'\u2630';
 }
-function fd(d){return new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'})}
+
+function fd(d){
+  return new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+}
+
 async function loadAll(){
   var files=['config','articles','videos','projets','glossaire','ressources','devenir-actuaire'];
-  var res=await Promise.all(files.map(function(f){return fetch('data/'+f+'.json').then(function(r){return r.json()}).catch(function(){return null})}));
-  D.cfg=res[0];D.arts=res[1]||[];D.vids=res[2]||[];D.projs=res[3]||[];
-  D.glos=res[4]||[];D.ress=res[5]||[];D.dev=res[6]||{};
-  D.arts.sort(function(a,b){return new Date(b.date)-new Date(a.date)});
-  D.vids.sort(function(a,b){return new Date(b.date)-new Date(a.date)});
-  appcfg();stats();homearts();homevids();artpage();vidpage();projpage();appage();devpage();glospage();respage();ctpage();
+  var res=await Promise.all(files.map(function(f){
+    return fetch('data/'+f+'.json').then(function(r){return r.json();}).catch(function(){return null;});
+  }));
+  D.cfg=res[0]; D.arts=res[1]||[]; D.vids=res[2]||[]; D.projs=res[3]||[];
+  D.glos=res[4]||[]; D.ress=res[5]||[]; D.dev=res[6]||{};
+  D.arts.sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+  D.vids.sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+  appcfg(); stats(); homearts(); homevids(); artpage(); vidpage();
+  projpage(); appage(); devpage(); glospage(); respage(); ctpage();
   document.getElementById('fy').textContent=new Date().getFullYear();
 }
+
 function appcfg(){
   if(!D.cfg)return;
   var s=D.cfg.site;
   document.getElementById('hdesc').textContent=s.description;
-  document.getElementById('tkbtn').href=s.tiktok;
-  var ytBtn=document.getElementById('ytbtn');
-  if(ytBtn&&s.youtube)ytBtn.href=s.youtube;
+  var tk=document.getElementById('tkbtn');
+  if(tk)tk.href=s.tiktok;
+  var yt=document.getElementById('ytbtn');
+  if(yt&&s.youtube)yt.href=s.youtube;
 }
+
 function stats(){
-  function sn(id,n){document.getElementById(id).innerHTML=n+'<span style="color:var(--gr)">+</span>'}
-  sn('sa',D.arts.length);sn('sv',D.vids.length);sn('sp',D.projs.length);sn('sg',D.glos.length);
+  function sn(id,n){
+    var el=document.getElementById(id);
+    if(el)el.innerHTML=n+'<span style="color:var(--gr)">+</span>';
+  }
+  sn('sa',D.arts.length); sn('sv',D.vids.length);
+  sn('sp',D.projs.length); sn('sg',D.glos.length);
 }
+
 function acard(a){
-  return '<div class="card" onclick="go(\'article\','+a.id+')">'+
-    '<div class="cc">'+a.categorie+' · '+a.tag+'</div>'+
-    '<h3>'+a.titre+'</h3><p>'+a.resume+'</p>'+
-    '<div class="cf"><span>'+fd(a.date)+'</span><span class="gr">'+a.lecture+' →</span></div></div>';
+  return '<div class="card" onclick="go(\'article\','+a.id+')">'
+    +'<div class="cc">'+a.categorie+' - '+a.tag+'</div>'
+    +'<h3>'+a.titre+'</h3><p>'+a.resume+'</p>'
+    +'<div class="cf"><span>'+fd(a.date)+'</span>'
+    +'<span class="gr">'+a.lecture+' -&gt;</span></div></div>';
 }
+
 function vcard(v){
-  var ic=v.plateforme==='TikTok'?'♪':'►';
-  var div=document.createElement('div');
-  div.className='vc';
-  div.onclick=function(){window.open(v.url,'_blank');};
-  div.innerHTML='<div class="vt"><div class="vi">'+ic+'</div>'
+  var ic=v.plateforme==='TikTok'?'&#9834;':'&#9654;';
+  return '<div class="vc" onclick="window.open(\''+v.url+'\',\'_blank\')">'
+    +'<div class="vt"><div class="vi">'+ic+'</div>'
     +'<span class="vp">'+v.plateforme+'</span>'
     +'<span class="vd">'+v.duree+'</span></div>'
     +'<div class="vtitle">'+v.titre+'</div>'
     +'<div class="vdesc">'+v.description+'</div>'
-    +'<div class="vdate">'+fd(v.date)+'</div>';
-  return div.outerHTML;
+    +'<div class="vdate">'+fd(v.date)+'</div></div>';
 }
 
-function homearts(){document.getElementById('ha').innerHTML=D.arts.slice(0,3).map(acard).join('')}
-function homevids(){document.getElementById('hv').innerHTML=D.vids.slice(0,4).map(vcard).join('')}
+function homearts(){
+  document.getElementById('ha').innerHTML=D.arts.slice(0,3).map(acard).join('');
+}
+function homevids(){
+  document.getElementById('hv').innerHTML=D.vids.slice(0,4).map(vcard).join('');
+}
+
 function artpage(){
-  var cats=['Tous'].concat([...new Set(D.arts.map(function(a){return a.categorie}))]);
+  var cats=['Tous'].concat([].concat.apply([],D.arts.map(function(a){return [a.categorie];}))
+    .filter(function(v,i,a){return a.indexOf(v)===i;}));
   document.getElementById('af').innerHTML=cats.map(function(c){
-    return '<button class="fbtn'+(c==='Tous'?' on':'')+'" onclick="farts(\''+ c +'\',this)">'+ c +'</button>'
+    var active=c==='Tous'?' on':'';
+    return '<button class="fbtn'+active+' artcat" data-v="'+c+'" onclick="artCatClick(this)">'+c+'</button>';
   }).join('');
   artgrid(D.arts);
 }
-function farts(c,btn){
-  document.querySelectorAll('#af .fbtn').forEach(function(b){b.classList.remove('on')});
+
+function artCatClick(btn){
+  document.querySelectorAll('.artcat').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on');
-  artgrid(c==='Tous'?D.arts:D.arts.filter(function(a){return a.categorie===c}));
+  var c=btn.dataset.v;
+  artgrid(c==='Tous'?D.arts:D.arts.filter(function(a){return a.categorie===c;}));
 }
+
 function artgrid(list){
-  var g=document.getElementById('ag'),e=document.getElementById('ae');
-  if(!list.length){g.innerHTML='';e.style.display='block';return}
-  e.style.display='none';g.innerHTML=list.map(acard).join('');
+  var g=document.getElementById('ag');
+  var e=document.getElementById('ae');
+  if(!list.length){g.innerHTML='';e.style.display='block';return;}
+  e.style.display='none';
+  g.innerHTML=list.map(acard).join('');
 }
+
 function rart(id){
-  var a=D.arts.find(function(x){return x.id===id});
+  var a=D.arts.find(function(x){return x.id===id;});
   if(!a)return;
-  // Update structured data for this article
   var ld={
-    "@context":"https://schema.org",
-    "@type":"Article",
-    "headline":a.titre,
-    "description":a.resume,
-    "datePublished":a.date,
+    "@context":"https://schema.org","@type":"Article",
+    "headline":a.titre,"description":a.resume,"datePublished":a.date,
     "author":{"@type":"Person","name":"ActuaireX"},
-    "publisher":{"@type":"Person","name":"ActuaireX","url":"https://actuairex.netlify.app"},
-    "url":"https://actuairex.netlify.app/#article",
-    "inLanguage":"fr",
-    "keywords":a.categorie+", actuariat, "+a.tag
+    "publisher":{"@type":"Person","name":"ActuaireX","url":"https://actuairex.netlify.app"}
   };
   var ldEl=document.getElementById('ld-article');
   if(ldEl)ldEl.textContent=JSON.stringify(ld);
-  // Update page title
-  document.title=a.titre+" — ActuaireX";
-  var a=D.arts.find(function(x){return x.id===id});if(!a)return;
+  document.title=a.titre+' - ActuaireX';
+  var paras=a.contenu.split('\\n\\n').map(function(p){return '<p>'+p+'</p>';}).join('');
   document.getElementById('ar').innerHTML=
-    '<div class="am"><span class="lbl">'+a.categorie+'</span>'+
-    '<span class="lbl lbl-g">'+a.tag+'</span>'+
-    '<span style="font-size:12px;color:var(--td)">'+fd(a.date)+'</span>'+
-    '<span style="font-size:12px;color:var(--td)">'+a.lecture+' de lecture</span></div>'+
-    '<h1 class="ati">'+a.titre+'</h1>'+
-    '<p class="ar">'+a.resume+'</p>'+
-    '<div class="ab">'+ a.contenu.split('\n\n').map(function(p){return '<p>'+p+'</p>'}).join('') +'</div>';
+    '<div class="am">'
+    +'<span class="lbl">'+a.categorie+'</span>'
+    +'<span class="lbl lbl-g">'+a.tag+'</span>'
+    +'<span style="font-size:12px;color:var(--td)">'+fd(a.date)+'</span>'
+    +'<span style="font-size:12px;color:var(--td)">'+a.lecture+' de lecture</span></div>'
+    +'<h1 class="ati">'+a.titre+'</h1>'
+    +'<p class="ar">'+a.resume+'</p>'
+    +'<div class="ab">'+paras+'</div>';
+  if(window.DISQUS){
+    try{DISQUS.reset({reload:true,config:function(){
+      this.page.identifier='article-'+id;
+      this.page.url='https://actuairex.netlify.app/article/'+id;
+    }});}catch(e){}
+  } else {
+    loadDisqus(id,a.titre);
+  }
 }
-function vidpage(){document.getElementById('vg').innerHTML=D.vids.map(vcard).join('')}
+
+function vidpage(){
+  document.getElementById('vg').innerHTML=D.vids.map(vcard).join('');
+}
+
 function projpage(){
   var out='';
   D.projs.forEach(function(p){
     var badge='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
+    var action=p.pdf
+      ? '<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjPDF(this)" data-pdf="'+p.pdf+'" data-titre="'+p.titre+'">Lire le rapport -&gt;</button>'
+      : '<span style="font-size:11px;color:var(--td)">En preparation</span>';
     out+='<div class="pj">'
       +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badge+'</div>'
-      +'<h3>'+p.titre+'</h3>'
-      +'<p>'+p.description+'</p>'
-      +'<div class="pjf">'
-      +'<span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
-      +(p.pdf
-        ? '<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openPDF(''+p.pdf+'',''+p.titre+'')">Lire le rapport →</button>'
-        : '<span style="font-size:11px;color:var(--td)">En préparation</span>')
-      +'</div></div>';
+      +'<h3>'+p.titre+'</h3><p>'+p.description+'</p>'
+      +'<div class="pjf"><span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
+      +action+'</div></div>';
   });
   document.getElementById('pjl').innerHTML=out;
 }
-function openPDF(url,titre){
+
+function openProjPDF(btn){
+  var url=btn.dataset.pdf;
+  var titre=btn.dataset.titre;
   document.getElementById('modal-title').textContent=titre;
   document.getElementById('modal-price').textContent='Lecture gratuite';
   document.getElementById('modal-buy').style.display='none';
@@ -854,7 +898,7 @@ function openPDF(url,titre){
     +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
     +'</div>'
     +'<div class="pdf-bottom-bar">'
-    +'<div class="pdf-bottom-note"><strong>Lecture en ligne gratuite.</strong><br>Ce rapport est disponible en lecture uniquement.</div>'
+    +'<div class="pdf-bottom-note"><strong>Lecture gratuite.</strong> Ce rapport est disponible en lecture uniquement.</div>'
     +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
     +'</div></div>';
   document.getElementById('modal').classList.add('open');
@@ -867,46 +911,53 @@ function appage(){
   document.getElementById('apt').textContent=ap.titre;
   document.getElementById('api').textContent=ap.intro;
   document.getElementById('app').innerHTML=ap.paragraphes.map(function(p){
-    return '<p class="app">'+p+'</p>'}).join('');
+    return '<p class="app">'+p+'</p>';
+  }).join('');
   document.getElementById('apv').innerHTML=ap.valeurs.map(function(v){
     return '<div class="vc3"><div class="vic">'+v.icone+'</div><h4>'+v.titre+'</h4><p>'+v.texte+'</p></div>';
   }).join('');
 }
+
 function devpage(){
-  var d=D.dev;if(!d||!d.intro)return;
+  var d=D.dev;
+  if(!d||!d.intro)return;
   document.getElementById('dai').textContent=d.intro;
   var h='';
-  h+='<div class="das"><h3>Le métier</h3>'+
-    '<p style="font-family:var(--sa);font-size:15px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:2rem">'+d.metier.description+'</p>'+
-    '<div class="sbox"><div class="snum">★</div><div class="sdesc"><strong style="color:#fff;font-family:var(--mo)">Salaire débutant</strong><br>'+d.metier.salaire_debutant+'</div></div>'+
-    '<h4 style="font-family:var(--mo);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin:2rem 0 1rem">Débouchés</h4>'+
-    '<div class="tags">'+d.metier.debouches.map(function(x){return '<span class="tag">'+x+'</span>'}).join('')+ '</div></div>';
-  h+='<div class="das"><h3>Études & formations</h3><div class="dag">'+
-    d.etudes.map(function(e){
-      return '<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">◈</div>'+
-        '<h4>'+e.niveau+'</h4><p>'+e.description+'</p>'+
-        '<div style="margin-top:.75rem">'+e.exemples.map(function(x){return '<div style="font-size:11px;color:var(--gr);padding:2px 0">· '+x+'</div>'}).join('')+'</div></div>';
-    }).join('')+'</div></div>';
-  h+='<div class="das"><h3>Compétences clés</h3><div class="dag">'+
-    d.competences.map(function(c){
-      return '<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">◉</div><h4>'+c.domaine+'</h4><p>'+c.details+'</p></div>';
-    }).join('')+'</div></div>';
-  h+='<div class="das"><h3>Matières étudiées</h3><div class="tags">'+
-    d.matieres.map(function(m){return '<span class="tag">'+m+'</span>'}).join('')+ '</div></div>';
+  h+='<div class="das"><h3>Le metier</h3>'
+    +'<p style="font-family:var(--sa);font-size:15px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:2rem">'+d.metier.description+'</p>'
+    +'<div class="sbox"><div class="snum">&#9733;</div>'
+    +'<div class="sdesc"><strong style="color:#fff;font-family:var(--mo)">Salaire debutant</strong><br>'+d.metier.salaire_debutant+'</div></div>'
+    +'<h4 style="font-family:var(--mo);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin:2rem 0 1rem">Debouches</h4>'
+    +'<div class="tags">'+d.metier.debouches.map(function(x){return '<span class="tag">'+x+'</span>';}).join('')+'</div></div>';
+  h+='<div class="das"><h3>Etudes et formations</h3><div class="dag">';
+  d.etudes.forEach(function(e){
+    h+='<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">&#9672;</div>'
+      +'<h4>'+e.niveau+'</h4><p>'+e.description+'</p>'
+      +'<div style="margin-top:.75rem">'+e.exemples.map(function(x){return '<div style="font-size:11px;color:var(--gr);padding:2px 0">. '+x+'</div>';}).join('')+'</div></div>';
+  });
+  h+='</div></div>';
+  h+='<div class="das"><h3>Competences cles</h3><div class="dag">';
+  d.competences.forEach(function(c){
+    h+='<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">&#9673;</div><h4>'+c.domaine+'</h4><p>'+c.details+'</p></div>';
+  });
+  h+='</div></div>';
+  h+='<div class="das"><h3>Matieres etudiees</h3><div class="tags">'
+    +d.matieres.map(function(m){return '<span class="tag">'+m+'</span>';}).join('')+'</div></div>';
   document.getElementById('dac').innerHTML=h;
 }
+
 var gdata=[];
-function glospage(){gdata=D.glos;rglos(gdata)}
+function glospage(){gdata=D.glos; rglos(gdata);}
 function rglos(list){
   document.getElementById('gl').innerHTML=list.map(function(g,i){
-    return '<div class="gi" id="gi'+i+'" onclick="tg('+i+')">'+
-      '<div class="gt"><span class="lbl lbl-g" style="font-size:10px">'+g.categorie+'</span>'+
-      '<h3>'+g.terme+'</h3><span style="flex:1"></span><span class="ga">▶</span></div>'+
-      '<div class="gb"><p class="gdef">'+g.definition+'</p>'+
-      '<div class="gex">'+g.exemple+'</div></div></div>';
+    return '<div class="gi" id="gi'+i+'" onclick="tg('+i+')">'
+      +'<div class="gt"><span class="lbl lbl-g" style="font-size:10px">'+g.categorie+'</span>'
+      +'<h3>'+g.terme+'</h3><span style="flex:1"></span><span class="ga">&#9658;</span></div>'
+      +'<div class="gb"><p class="gdef">'+g.definition+'</p>'
+      +'<div class="gex">'+g.exemple+'</div></div></div>';
   }).join('');
 }
-function tg(i){document.getElementById('gi'+i).classList.toggle('op')}
+function tg(i){document.getElementById('gi'+i).classList.toggle('op');}
 function fg(q){
   var lq=q.toLowerCase();
   rglos(gdata.filter(function(g){
@@ -914,73 +965,69 @@ function fg(q){
   }));
 }
 
-var ticons2={'Outil Excel':'◎','Code Python':'▶','Code R':'◈','Cours':'📖','Document réglementaire':'◉'};
-var niveauColor={'Débutant':'var(--gr)','Intermédiaire':'#ffb300','Avancé':'#f44336','Professionnel':'#9c27b0'};
-
 function respage(){
-  var types=['Tous'].concat([...new Set(D.ress.map(function(r){return r.type}))]);
+  var types=['Tous'].concat([].concat.apply([],D.ress.map(function(r){return [r.type];}))
+    .filter(function(v,i,a){return a.indexOf(v)===i;}));
   document.getElementById('rf').innerHTML=types.map(function(t){
-    return '<button class="fbtn'+(t==='Tous'?' on':'')+'" onclick="fres(\''+t+'\',this)">'+t+'</button>'
+    var active=t==='Tous'?' on':'';
+    return '<button class="fbtn'+active+' rescat" data-v="'+t+'" onclick="resCatClick(this)">'+t+'</button>';
   }).join('');
   rres(D.ress);
 }
-function fres(t,btn){
-  document.querySelectorAll('#rf .fbtn').forEach(function(b){b.classList.remove('on')});
+
+function resCatClick(btn){
+  document.querySelectorAll('.rescat').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on');
-  rres(t==='Tous'?D.ress:D.ress.filter(function(r){return r.type===t}));
+  var t=btn.dataset.v;
+  rres(t==='Tous'?D.ress:D.ress.filter(function(r){return r.type===t;}));
 }
 
 function rres(list){
   document.getElementById('rl').innerHTML=list.map(function(r){
     var previewHTML='';
     if(r.preview){
-      var previewLabel=r.type_fichier==='PDF'?'Lire le PDF gratuitement':'Voir l\'aperçu';
-      previewHTML='<div class="res-preview" onclick="openPreview('+r.id+')">'+
-        '<img src="'+r.preview+'" alt="Aperçu '+r.titre+'" onerror="this.style.display=\'none\'"/>'+
-        '<div class="res-preview-overlay"><span class="res-preview-zoom">'+previewLabel+'</span></div>'+
-        '<div class="res-wm">ACTUAIREX — '+(r.type_fichier==='PDF'?'LECTURE GRATUITE — TÉLÉCHARGEMENT PAYANT':'APERÇU UNIQUEMENT — TÉLÉCHARGEMENT PROTÉGÉ')+'</div>'+
-        '</div>';
+      var previewLabel=r.type_fichier==='PDF'?'Lire le PDF gratuitement':'Voir l apercu';
+      previewHTML='<div class="res-preview" onclick="openPreview('+r.id+')">'
+        +'<img src="'+r.preview+'" alt="Apercu" onerror="this.style.display=\'none\'"/>'
+        +'<div class="res-preview-overlay"><span class="res-preview-zoom">'+previewLabel+'</span></div>'
+        +'<div class="res-wm">ACTUAIREX - '+(r.type_fichier==='PDF'?'LECTURE GRATUITE':'APERCU UNIQUEMENT')+'</div>'
+        +'</div>';
     }
     var btns='';
     if(r.gratuit){
-      if(r.lien_lecture) btns+='<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank">Télécharger →</a>';
+      if(r.lien_lecture)btns+='<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank">Telecharger -&gt;</a>';
     } else {
       if(r.type_fichier==='PDF'&&r.lien_lecture){
         btns+='<button class="res-btn-read" onclick="openPreview('+r.id+');event.stopPropagation()">Lire en ligne</button>';
       }
-      if(r.lien_achat) btns+='<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank" onclick="event.stopPropagation()">Télécharger — '+r.prix+' →</a>';
+      if(r.lien_achat)btns+='<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank" onclick="event.stopPropagation()">Acheter '+r.prix+' -&gt;</a>';
     }
-    return '<div class="res-card">'+
-      previewHTML+
-      '<div class="res-body">'+
-      '<div class="res-type-row">'+
-        '<span class="lbl" style="font-size:10px">'+r.type+'</span>'+
-        '<span class="lbl lbl-g" style="font-size:10px">'+r.niveau+'</span>'+
-        (r.gratuit?'<span class="lbl" style="font-size:10px;color:var(--gr)">Gratuit</span>':
-          (r.type_fichier==='PDF'?
-            '<span class="lbl" style="font-size:10px;color:#ffb300;border-color:#ffb300">Lecture gratuite</span>':
-            '<span class="lbl lbl-g" style="font-size:10px">'+r.prix+'</span>'))+
-      '</div>'+
-      '<div class="res-title">'+r.titre+'</div>'+
-      '<div class="res-desc">'+r.description+'</div>'+
-      '<div class="res-footer">'+
-        '<div>'+
-          (r.gratuit?
-            '<div class="res-price-free">Accès libre</div>':
-            (r.type_fichier==='PDF'?
-              '<div style="font-size:11px;color:#ffb300;font-family:var(--mo)">Lecture gratuite</div><div style="font-size:10px;color:var(--gr);font-family:var(--mo)">Téléchargement '+r.prix+'</div>':
-              '<div class="res-price">'+r.prix+'</div>'))+
-          '<div style="font-size:10px;color:var(--td);margin-top:2px">'+r.auteur+'</div>'+
-        '</div>'+
-        '<div class="res-btns">'+btns+'</div>'+
-      '</div>'+
-      '</div></div>';
+    return '<div class="res-card">'
+      +previewHTML
+      +'<div class="res-body">'
+      +'<div class="res-type-row">'
+      +'<span class="lbl" style="font-size:10px">'+r.type+'</span>'
+      +'<span class="lbl lbl-g" style="font-size:10px">'+r.niveau+'</span>'
+      +(r.gratuit?'<span class="lbl" style="font-size:10px;color:var(--gr)">Gratuit</span>'
+        :(r.type_fichier==='PDF'?'<span class="lbl" style="font-size:10px;color:#ffb300;border-color:#ffb300">Lecture gratuite</span>'
+          :'<span class="lbl lbl-g" style="font-size:10px">'+r.prix+'</span>'))
+      +'</div>'
+      +'<div class="res-title">'+r.titre+'</div>'
+      +'<div class="res-desc">'+r.description+'</div>'
+      +'<div class="res-footer">'
+      +'<div>'
+      +(r.gratuit?'<div class="res-price-free">Acces libre</div>'
+        :(r.type_fichier==='PDF'?'<div style="font-size:11px;color:#ffb300;font-family:var(--mo)">Lecture gratuite</div><div style="font-size:10px;color:var(--gr);font-family:var(--mo)">Telechargement '+r.prix+'</div>'
+          :'<div class="res-price">'+r.prix+'</div>'))
+      +'<div style="font-size:10px;color:var(--td);margin-top:2px">'+r.auteur+'</div>'
+      +'</div>'
+      +'<div class="res-btns">'+btns+'</div>'
+      +'</div></div></div>';
   }).join('');
 }
 
-
 function openPreview(id){
-  var r=D.ress.find(function(x){return x.id===id});
+  var r=D.ress.find(function(x){return x.id===id;});
   if(!r)return;
   document.getElementById('modal-title').textContent=r.titre;
   document.getElementById('modal-price').textContent=r.gratuit?'Gratuit':r.prix;
@@ -989,45 +1036,39 @@ function openPreview(id){
   else{buyBtn.style.display='none';}
   var body='';
   if(r.type_fichier==='PDF'&&r.lien_lecture){
-    body+='<div class="pdf-reader-wrap">'+
-      '<div class="pdf-reader-toolbar">'+
-        '<span class="pdf-reader-toolbar-title">'+r.titre+'</span>'+
-        '<div style="display:flex;align-items:center;gap:.75rem">'+
-          '<span class="pdf-reader-toolbar-badge">Lecture gratuite</span>'+
-          '<span class="pdf-reader-toolbar-lock">&#128274; T&#233;l&#233;chargement prot&#233;g&#233;</span>'+
-        '</div>'+
-      '</div>'+
-      '<div class="pdf-frame-container">'+
-        '<iframe class="pdf-frame" src="'+r.lien_lecture+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'+
-        '<div class="pdf-block-overlay" oncontextmenu="return false"></div>'+
-      '</div>'+
-      '<div class="pdf-bottom-bar">'+
-        '<div class="pdf-bottom-note">'+
-          '<strong>Lecture en ligne gratuite et illimit&#233;e.</strong><br>'+
-          'Pour t&#233;l&#233;charger le fichier complet avec filigrane, utilise le bouton Acheter.'+
-        '</div>'+
-        (r.lien_achat&&!r.gratuit?
-          '<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank">T&#233;l&#233;charger &#8212; '+r.prix+' &#8594;</a>':
-          '<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank" download>T&#233;l&#233;charger gratuit &#8594;</a>'
-        )+
-      '</div>'+
-    '</div>';
+    body='<div class="pdf-reader-wrap">'
+      +'<div class="pdf-reader-toolbar">'
+      +'<span class="pdf-reader-toolbar-title">'+r.titre+'</span>'
+      +'<div style="display:flex;align-items:center;gap:.75rem">'
+      +'<span class="pdf-reader-toolbar-badge">Lecture gratuite</span>'
+      +'<span class="pdf-reader-toolbar-lock">&#128274; Telechargement protege</span>'
+      +'</div></div>'
+      +'<div class="pdf-frame-container">'
+      +'<iframe class="pdf-frame" src="'+r.lien_lecture+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+      +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+      +'</div>'
+      +'<div class="pdf-bottom-bar">'
+      +'<div class="pdf-bottom-note"><strong>Lecture gratuite.</strong><br>Pour telecharger, utilise le bouton Acheter.</div>'
+      +(r.lien_achat&&!r.gratuit?'<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank">Telecharger - '+r.prix+' -&gt;</a>'
+        :'<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank" download>Telecharger gratuit -&gt;</a>')
+      +'</div></div>';
   } else {
     if(!r.gratuit){
-      body+='<div class="licence-box"><strong>&#9888; Licence utilisation personnelle</strong>'+
-        'Fichier prot&#233;g&#233;. 1 achat = 1 t&#233;l&#233;chargement. Partage interdit. &#169; ActuaireX</div>';
+      body='<div class="licence-box"><strong>&#9888; Licence utilisation personnelle</strong>'
+        +'Fichier protege. 1 achat = 1 telechargement. Partage interdit. &#169; ActuaireX</div>';
     }
     if(r.preview){
-      body+='<img class="modal-img" src="'+r.preview+'" alt="Aper&#231;u '+r.titre+'"/>'+
-        '<div class="modal-wm-notice"><strong>Aper&#231;u en image.</strong> '+
-        'Le fichier complet ('+r.type_fichier+') contient le code source / fichier modifiable. '+
-        'Apr&#232;s achat sur Selar, tu re&#231;ois le fichier par email avec ton nom dans le filigrane.</div>';
+      body+='<img class="modal-img" src="'+r.preview+'" alt="Apercu"/>'
+        +'<div class="modal-wm-notice"><strong>Apercu en image.</strong> '
+        +'Le fichier complet ('+r.type_fichier+') contient le code source. '
+        +'Apres achat sur Selar, tu recois le fichier par email.</div>';
     }
   }
   document.getElementById('modal-body').innerHTML=body;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function closeModal(e){
   if(e&&e.target!==document.getElementById('modal'))return;
   document.getElementById('modal').classList.remove('open');
@@ -1035,108 +1076,112 @@ function closeModal(e){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 
-
-function fartsCat(btn){
-  var c=btn.dataset.cat;
-  document.querySelectorAll('#af .fbtn').forEach(function(b){b.classList.remove('on')});
-  btn.classList.add('on');
-  artgrid(c==='Tous'?D.arts:D.arts.filter(function(a){return a.categorie===c}));
-}
-function fresCat(btn){
-  var t=btn.dataset.type;
-  document.querySelectorAll('#rf .fbtn').forEach(function(b){b.classList.remove('on')});
-  btn.classList.add('on');
-  rres(t==='Tous'?D.ress:D.ress.filter(function(r){return r.type===t}));
-}
-
 function ctpage(){
   if(!D.cfg)return;
-  var s=D.cfg.site,links=[];
+  var s=D.cfg.site;
+  var links=[];
   if(s.email)links.push({i:'@',l:s.email,h:'mailto:'+s.email});
   if(s.linkedin)links.push({i:'in',l:'LinkedIn / ActuaireX',h:s.linkedin});
   if(s.tiktok)links.push({i:'tt',l:'TikTok / @actuairex',h:s.tiktok});
-  if(s.selar)links.push({i:'$',l:'Boutique Selar',h:s.selar});
   if(s.youtube)links.push({i:'yt',l:'YouTube / @actuairex',h:s.youtube});
+  if(s.selar)links.push({i:'$',l:'Boutique Selar',h:s.selar});
   document.getElementById('clinks').innerHTML=links.map(function(lk){
     return '<a href="'+lk.h+'" class="cl" target="_blank"><div class="ci">'+lk.i+'</div>'+lk.l+'</a>';
   }).join('');
 }
-function sub(id){
-  var v=document.getElementById(id).value;
-  if(!v||!v.includes('@')){toast('Email invalide.');return}
-  toast('Bienvenue dans la communauté ActuaireX !');
-  document.getElementById(id).value='';
-}
+
 async function sct(){
   var name=document.getElementById('cn').value;
   var email=document.getElementById('ce').value;
   var subject=document.getElementById('cs').value;
   var msg=document.getElementById('cm').value;
-  if(!name||!msg){toast('Merci de remplir tous les champs.');return}
+  if(!name||!msg){toast('Merci de remplir tous les champs.');return;}
   var btn=document.querySelector('#page-contact .btn-g');
   btn.textContent='Envoi...';btn.style.opacity='0.6';
   try{
     var r=await fetch('https://formspree.io/f/xbdzaknw',{
-      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({name:name,email:email,subject:subject,message:msg})
     });
     if(r.ok){
-      toast('Message envoyé ! Je te réponds bientôt.');
-      ['cn','ce','cs','cm'].forEach(function(id){document.getElementById(id).value=''});
-    } else {toast('Erreur d\'envoi. Réessaie ou contacte via LinkedIn.');}
-  } catch(e){toast('Erreur réseau. Vérifie ta connexion.');}
-  btn.textContent='Envoyer →';btn.style.opacity='1';
-}
-function toast(m){
-  var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},3000);
+      toast('Message envoye ! Je te reponds bientot.');
+      ['cn','ce','cs','cm'].forEach(function(id){document.getElementById(id).value='';});
+    } else {
+      toast('Erreur envoi. Reessaie ou contacte via LinkedIn.');
+    }
+  } catch(e){
+    toast('Erreur reseau. Verifie ta connexion.');
+  }
+  btn.textContent='Envoyer ->'; btn.style.opacity='1';
 }
 
-// ── COOKIES ──
+function sub(id){
+  var v=document.getElementById(id).value;
+  if(!v||!v.includes('@')){toast('Email invalide.');return;}
+  toast('Bienvenue dans la communaute ActuaireX !');
+  document.getElementById(id).value='';
+}
+
+function toast(m){
+  var t=document.getElementById('toast');
+  t.textContent=m; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+
 function initCookies(){
   var consent=localStorage.getItem('ax-cookie-consent');
-  if(!consent){setTimeout(function(){document.getElementById('cookie-banner').classList.add('show')},2000);}
-  else if(consent==='accepted'){enableGA();}
+  if(!consent){
+    setTimeout(function(){
+      var cb=document.getElementById('cookie-banner');
+      if(cb)cb.classList.add('show');
+    },2000);
+  } else if(consent==='accepted'){
+    enableGA();
+  }
 }
 function accepterCookies(){
   localStorage.setItem('ax-cookie-consent','accepted');
-  document.getElementById('cookie-banner').classList.remove('show');
+  var cb=document.getElementById('cookie-banner');
+  if(cb)cb.classList.remove('show');
   enableGA();
 }
 function refuserCookies(){
   localStorage.setItem('ax-cookie-consent','refused');
-  document.getElementById('cookie-banner').classList.remove('show');
+  var cb=document.getElementById('cookie-banner');
+  if(cb)cb.classList.remove('show');
 }
 function enableGA(){
   if(typeof gtag!=='undefined')gtag('consent','update',{'analytics_storage':'granted'});
 }
 
-// ── DISQUS ──
-function loadDisqus(articleId, articleTitle){
+function loadDisqus(articleId,articleTitle){
   var container=document.getElementById('disqus-container');
   if(!container)return;
   container.style.display='block';
-  var d=document, s=d.createElement('script');
-  s.src='https://https-actuairex-netlify-app.disqus.com/embed.js';
-  s.setAttribute('data-timestamp',+new Date());
   window.disqus_config=function(){
     this.page.url='https://actuairex.netlify.app/article/'+articleId;
     this.page.identifier='article-'+articleId;
     this.page.title=articleTitle;
   };
+  var d=document,s=d.createElement('script');
+  s.src='https://https-actuairex-netlify-app.disqus.com/embed.js';
+  s.setAttribute('data-timestamp',+new Date());
   (d.head||d.body).appendChild(s);
 }
 
-// ── ROUTER 404 ──
 function checkRoute(){
-  var hash=window.location.hash.replace('#','');
-  if(hash&&document.getElementById('page-'+hash)){go(hash);}
+  try{
+    var hash=window.location.hash.replace('#','');
+    if(hash&&document.getElementById('page-'+hash)){go(hash);}
+  }catch(e){}
 }
 window.addEventListener('hashchange',function(){checkRoute();});
 
+loadAll();
 initCookies();
 checkRoute();
-loadAll();
+
 </script>
 </body>
 </html>
