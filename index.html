@@ -514,6 +514,7 @@ footer a:hover{color:var(--gr)}
         <p>Vidéos courtes sur l'actuariat. Nouveau contenu chaque semaine.</p>
       </div>
       <a id="tkbtn" href="#" target="_blank" class="btn btn-g">Voir sur TikTok →</a>
+      <a id="ytbtn" href="https://youtube.com/@actuairex" target="_blank" class="btn btn-o" style="margin-left:.75rem">Voir sur YouTube →</a>
     </div>
   </div>
 </div>
@@ -744,6 +745,8 @@ function appcfg(){
   var s=D.cfg.site;
   document.getElementById('hdesc').textContent=s.description;
   document.getElementById('tkbtn').href=s.tiktok;
+  var ytBtn=document.getElementById('ytbtn');
+  if(ytBtn&&s.youtube)ytBtn.href=s.youtube;
 }
 function stats(){
   function sn(id,n){document.getElementById(id).innerHTML=n+'<span style="color:var(--gr)">+</span>'}
@@ -822,19 +825,40 @@ function vidpage(){document.getElementById('vg').innerHTML=D.vids.map(vcard).joi
 function projpage(){
   var out='';
   D.projs.forEach(function(p){
-    var badges='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
-    if(!p.disponible) badges+=' <span class="lbl lbl-d">Bientôt</span>';
-    var action=p.disponible
-      ? '<a href="'+p.lien+'" class="btn btn-o" style="padding:8px 18px;font-size:11px" target="_blank">Voir &rarr;</a>'
-      : '<span style="font-size:11px;color:var(--td)">En préparation</span>';
+    var badge='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
     out+='<div class="pj">'
-      +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badges+'</div>'
+      +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badge+'</div>'
       +'<h3>'+p.titre+'</h3>'
       +'<p>'+p.description+'</p>'
-      +'<div class="pjf"><span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
-      +action+'</div></div>';
+      +'<div class="pjf">'
+      +'<span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
+      +(p.pdf
+        ? '<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openPDF(''+p.pdf+'',''+p.titre+'')">Lire le rapport →</button>'
+        : '<span style="font-size:11px;color:var(--td)">En préparation</span>')
+      +'</div></div>';
   });
   document.getElementById('pjl').innerHTML=out;
+}
+function openPDF(url,titre){
+  document.getElementById('modal-title').textContent=titre;
+  document.getElementById('modal-price').textContent='Lecture gratuite';
+  document.getElementById('modal-buy').style.display='none';
+  document.getElementById('modal-body').innerHTML=
+    '<div class="pdf-reader-wrap">'
+    +'<div class="pdf-reader-toolbar">'
+    +'<span class="pdf-reader-toolbar-title">'+titre+'</span>'
+    +'<span class="pdf-reader-toolbar-badge">Lecture gratuite</span>'
+    +'</div>'
+    +'<div class="pdf-frame-container">'
+    +'<iframe class="pdf-frame" src="'+url+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+    +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+    +'</div>'
+    +'<div class="pdf-bottom-bar">'
+    +'<div class="pdf-bottom-note"><strong>Lecture en ligne gratuite.</strong><br>Ce rapport est disponible en lecture uniquement.</div>'
+    +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+    +'</div></div>';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 
 function appage(){
@@ -1032,6 +1056,7 @@ function ctpage(){
   if(s.linkedin)links.push({i:'in',l:'LinkedIn / ActuaireX',h:s.linkedin});
   if(s.tiktok)links.push({i:'tt',l:'TikTok / @actuairex',h:s.tiktok});
   if(s.selar)links.push({i:'$',l:'Boutique Selar',h:s.selar});
+  if(s.youtube)links.push({i:'yt',l:'YouTube / @actuairex',h:s.youtube});
   document.getElementById('clinks').innerHTML=links.map(function(lk){
     return '<a href="'+lk.h+'" class="cl" target="_blank"><div class="ci">'+lk.i+'</div>'+lk.l+'</a>';
   }).join('');
