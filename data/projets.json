@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "titre": "Modèle de provisionnement Chain-Ladder",
+    "categorie": "Excel",
+    "tag": "IARD",
+    "date": "2025-01-15",
+    "description": "Fichier Excel interactif pour calculer les provisions IARD par la méthode Chain-Ladder. Inclut les triangles de développement et les projections automatiques.",
+    "lien": "#",
+    "disponible": true
+  },
+  {
+    "id": 2,
+    "titre": "Simulateur de table de mortalité",
+    "categorie": "Python",
+    "tag": "Vie",
+    "date": "2025-02-01",
+    "description": "Script Python pour construire et visualiser des tables de mortalité à partir de données brutes. Ajustement des lois de Gompertz et Makeham.",
+    "lien": "#",
+    "disponible": true
+  },
+  {
+    "id": 3,
+    "titre": "Dashboard sinistralité auto",
+    "categorie": "R / Shiny",
+    "tag": "IARD",
+    "date": "2025-02-20",
+    "description": "Application R Shiny pour visualiser et analyser la sinistralité d'un portefeuille automobile. Filtres dynamiques, graphiques interactifs.",
+    "lien": "#",
+    "disponible": true
+  },
+  {
+    "id": 4,
+    "titre": "Calculateur de prime vie entière",
+    "categorie": "Excel",
+    "tag": "Vie",
+    "date": "2025-03-05",
+    "description": "Outil Excel pour calculer la prime unique et périodique d'une assurance vie entière selon différentes tables de mortalité et taux techniques.",
+    "lien": "#",
+    "disponible": false
+  }
+]

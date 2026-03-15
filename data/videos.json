@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titre": "C'est quoi un actuaire ? (en 60 secondes)",
+    "plateforme": "TikTok",
+    "url": "https://tiktok.com/@actuairex",
+    "date": "2025-02-05",
+    "duree": "60s",
+    "description": "Explication ultra-rapide du métier d'actuaire pour les non-initiés."
+  },
+  {
+    "id": 2,
+    "titre": "Comment l'assurance calcule ta prime auto ?",
+    "plateforme": "TikTok",
+    "url": "https://tiktok.com/@actuairex",
+    "date": "2025-02-12",
+    "duree": "90s",
+    "description": "Les 5 facteurs qui font monter ou baisser ta prime d'assurance automobile."
+  },
+  {
+    "id": 3,
+    "titre": "La loi des grands nombres expliquée simplement",
+    "plateforme": "TikTok",
+    "url": "https://tiktok.com/@actuairex",
+    "date": "2025-02-20",
+    "duree": "75s",
+    "description": "Le principe mathématique fondamental derrière toute l'industrie de l'assurance."
+  },
+  {
+    "id": 4,
+    "titre": "Actuaire : le métier le mieux payé dont personne ne parle",
+    "plateforme": "YouTube",
+    "url": "https://youtube.com/@actuairex",
+    "date": "2025-03-01",
+    "duree": "8min",
+    "description": "Salaires, débouchés, formations — tout sur la carrière d'actuaire en Afrique."
+  }
+]
