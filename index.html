@@ -706,14 +706,14 @@ footer a:hover{color:var(--gr)}
 <script>
 var D={};
 function go(p,x){
-  if(history.pushState){try{history.pushState(null,null,'#'+p);}catch(e){}}
+  try{if(history.pushState)history.pushState(null,null,'#'+p);}catch(e){}
   document.querySelectorAll('.page').forEach(function(e){e.classList.remove('on')});
   var el=document.getElementById('page-'+p);
   if(!el)return;
   el.classList.add('on');
   window.scrollTo(0,0);
   document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('on',a.dataset.p===p)});
-  var titles={'accueil':'ActuaireX — Comprendre l\'actuariat simplement',
+  var titles={'accueil':'ActuaireX - Comprendre l actuariat simplement',
     'articles':'Articles — ActuaireX','videos':'Vidéos — ActuaireX',
     'projets':'Projets — ActuaireX','apropos':'À propos — ActuaireX',
     'devenir':'Devenir actuaire — ActuaireX','glossaire':'Glossaire actuariel — ActuaireX',
