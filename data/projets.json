@@ -4,9 +4,9 @@
     "titre": "Modélisation de la table de mortalité TD88-90",
     "categorie": "Rapport PDF",
     "tag": "Vie",
-    "date": "2025-02-01",
+    "date": "2026-03-17",
     "description": "Rapport complet sur la reconstruction et l'analyse des tables de mortalité françaises. Ajustement des lois de Makeham et Gompertz avec implémentation en R.",
-    "pdf": "fichiers/pdf/rapport-mortalite-td8890.pdf",
+    "pdf": "",
     "disponible": false
   },
   {
