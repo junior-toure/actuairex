@@ -11,22 +11,22 @@
   },
   {
     "id": 2,
-    "titre": "Valorisation d'options par Monte Carlo",
+    "titre": "Outil automatisé de calcul des provisions pour primes",
     "categorie": "Rapport PDF",
-    "tag": "Finance",
-    "date": "2025-02-15",
-    "description": "Rapport de projet sur la simulation de 100 000 trajectoires browniennes pour le pricing d'options vanilla et barrier. Analyse de convergence et intervalles de confiance.",
-    "pdf": "fichiers/pdf/rapport-monte-carlo.pdf",
+    "tag": "IARD",
+    "date": "2026-03-17",
+    "description": "Ce projet consiste à développer un outil automatisé permettant de calculer les provisions pour primes de manière fiable et efficace. Il vise à réduire les erreurs manuelles, améliorer la rapidité de traitement des données et assurer une meilleure conformité aux règles de gestion.",
+    "pdf": "",
     "disponible": false
   },
   {
-    "id": 3,
-    "titre": "Best Estimate sous Solvabilité II",
+    "id": 4,
+    "titre": "Comparateur de méthodes de provisionnement des sinistres",
     "categorie": "Rapport PDF",
     "tag": "IARD",
-    "date": "2025-03-01",
-    "description": "Guide opérationnel sur le calcul des provisions Best Estimate non-vie. Focus sur la sélection des triangles de développement et l'actualisation EIOPA.",
-    "pdf": "fichiers/pdf/rapport-best-estimate.pdf",
+    "date": "2026-03-17",
+    "description": "Ce projet consiste à analyser et comparer différentes méthodes de provisionnement des sinistres afin d’identifier les approches les plus adaptées selon les contextes. Il permet d’évaluer la précision, la robustesse et les limites de chaque méthode, tout en aidant à la prise de décision actuarielle.",
+    "pdf": "",
     "disponible": false
   }
 ]
