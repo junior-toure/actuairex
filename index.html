@@ -869,9 +869,12 @@ function projpage(){
   var out='';
   D.projs.forEach(function(p){
     var badge='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
-    var action=p.pdf
-      ? '<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjPDF(this)" data-pdf="'+p.pdf+'" data-titre="'+p.titre+'">Lire le rapport -&gt;</button>'
-      : '<span style="font-size:11px;color:var(--td)">En preparation</span>';
+    var action='<span style="font-size:11px;color:var(--td)">En preparation</span>';
+    if(p.pdf){
+      action='<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjViewer(this)" data-pdf="'+p.pdf+'" data-img="" data-type="pdf" data-titre="'+p.titre+'">Consulter -&gt;</button>';
+    } else if(p.img){
+      action='<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjViewer(this)" data-pdf="" data-img="'+p.img+'" data-type="'+p.type_fichier+'" data-titre="'+p.titre+'">Consulter -&gt;</button>';
+    }
     out+='<div class="pj">'
       +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badge+'</div>'
       +'<h3>'+p.titre+'</h3><p>'+p.description+'</p>'
@@ -879,6 +882,50 @@ function projpage(){
       +action+'</div></div>';
   });
   document.getElementById('pjl').innerHTML=out;
+}
+
+function openProjViewer(btn){
+  var titre=btn.dataset.titre;
+  var type=btn.dataset.type;
+  var pdf=btn.dataset.pdf;
+  var img=btn.dataset.img;
+  document.getElementById('modal-title').textContent=titre;
+  document.getElementById('modal-price').textContent='Consultation gratuite';
+  document.getElementById('modal-buy').style.display='none';
+  var body='';
+  if(type==='pdf'&&pdf){
+    body='<div class="pdf-reader-wrap">'
+      +'<div class="pdf-reader-toolbar">'
+      +'<span class="pdf-reader-toolbar-title">'+titre+'</span>'
+      +'<span class="pdf-reader-toolbar-badge">Consultation gratuite</span>'
+      +'</div>'
+      +'<div class="pdf-frame-container">'
+      +'<iframe class="pdf-frame" src="'+pdf+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+      +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+      +'</div>'
+      +'<div class="pdf-bottom-bar">'
+      +'<div class="pdf-bottom-note"><strong>Consultation gratuite.</strong><br>Ce rapport est disponible en lecture sur ce site.</div>'
+      +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+      +'</div></div>';
+  } else if(img){
+    body='<div style="padding:.5rem">'
+      +'<div style="font-family:var(--mo);font-size:11px;color:var(--gr);margin-bottom:1rem;letter-spacing:.08em">'+type.toUpperCase()+' - CONSULTATION GRATUITE</div>'
+      +'<img src="'+img+'" alt="'+titre+'" style="width:100%;display:block;border:1px solid var(--bd)"/>'
+      +'<div style="margin-top:1rem;padding:.75rem 1rem;background:var(--s3);border-left:2px solid var(--gr);font-family:var(--mo);font-size:11px;color:var(--tm);line-height:1.7">'
+      +'Ceci est une capture du fichier '+type+'. Consultation gratuite sur ce site.'
+      +'</div>'
+      +'<div style="margin-top:1rem;text-align:right">'
+      +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+      +'</div></div>';
+  } else {
+    body='<div style="padding:2rem;text-align:center;color:var(--tm);font-family:var(--sa)">'
+      +'<div style="font-size:2rem;margin-bottom:1rem">&#128274;</div>'
+      +'<p>Ce projet est en cours de preparation.</p>'
+      +'</div>';
+  }
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 
 function openProjPDF(btn){
@@ -995,7 +1042,11 @@ function rres(list){
     }
     var btns='';
     if(r.gratuit){
-      if(r.lien_lecture)btns+='<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank">Telecharger -&gt;</a>';
+      if(r.lien_lecture&&r.telechargeable===false){
+        btns+='<button class="res-btn-read" onclick="openPreview('+r.id+');event.stopPropagation()">Lire gratuitement</button>';
+      } else if(r.lien_lecture){
+        btns+='<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank">Telecharger -&gt;</a>';
+      }
     } else {
       if(r.type_fichier==='PDF'&&r.lien_lecture){
         btns+='<button class="res-btn-read" onclick="openPreview('+r.id+');event.stopPropagation()">Lire en ligne</button>';
@@ -1008,7 +1059,8 @@ function rres(list){
       +'<div class="res-type-row">'
       +'<span class="lbl" style="font-size:10px">'+r.type+'</span>'
       +'<span class="lbl lbl-g" style="font-size:10px">'+r.niveau+'</span>'
-      +(r.gratuit?'<span class="lbl" style="font-size:10px;color:var(--gr)">Gratuit</span>'
+      +(r.gratuit&&r.telechargeable===false?'<span class="lbl" style="font-size:10px;color:#2196F3;border-color:#2196F3">Lecture gratuite</span>'
+        :r.gratuit?'<span class="lbl" style="font-size:10px;color:var(--gr)">Gratuit</span>'
         :(r.type_fichier==='PDF'?'<span class="lbl" style="font-size:10px;color:#ffb300;border-color:#ffb300">Lecture gratuite</span>'
           :'<span class="lbl lbl-g" style="font-size:10px">'+r.prix+'</span>'))
       +'</div>'
@@ -1016,7 +1068,8 @@ function rres(list){
       +'<div class="res-desc">'+r.description+'</div>'
       +'<div class="res-footer">'
       +'<div>'
-      +(r.gratuit?'<div class="res-price-free">Acces libre</div>'
+      +(r.gratuit&&r.telechargeable===false?'<div style="font-size:11px;color:#2196F3;font-family:var(--mo)">Lecture gratuite</div>'
+            :r.gratuit?'<div class="res-price-free">Acces libre</div>'
         :(r.type_fichier==='PDF'?'<div style="font-size:11px;color:#ffb300;font-family:var(--mo)">Lecture gratuite</div><div style="font-size:10px;color:var(--gr);font-family:var(--mo)">Telechargement '+r.prix+'</div>'
           :'<div class="res-price">'+r.prix+'</div>'))
       +'<div style="font-size:10px;color:var(--td);margin-top:2px">'+r.auteur+'</div>'
@@ -1050,6 +1103,7 @@ function openPreview(id){
       +'<div class="pdf-bottom-bar">'
       +'<div class="pdf-bottom-note"><strong>Lecture gratuite.</strong><br>Pour telecharger, utilise le bouton Acheter.</div>'
       +(r.lien_achat&&!r.gratuit?'<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank">Telecharger - '+r.prix+' -&gt;</a>'
+        :r.gratuit&&r.telechargeable===false?'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
         :'<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank" download>Telecharger gratuit -&gt;</a>')
       +'</div></div>';
   } else {
