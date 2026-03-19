@@ -1,18 +1,19 @@
 [
   {
     "id": 1,
-    "titre": "Modèle Chain-Ladder complet",
+    "titre": "Calcul de la Provision pour Risques en Cours (PREC)",
     "type": "Outil Excel",
     "auteur": "ActuaireX",
-    "niveau": "Intermédiaire",
+    "niveau": "Débutant-Intermédiaire",
     "langue": "Français",
-    "description": "Template Excel pour calculer les provisions IARD par la méthode Chain-Ladder. Triangles de développement, projections automatiques, graphiques inclus.",
+    "description": "Cette ressource explique de manière claire et pratique le calcul de la provision pour risques en cours selon la méthode réglementaire des 36% définie par le code CIMA. Elle présente les types de primes concernées, les conditions d’application ainsi qu’un exemple détaillé permettant de comprendre le calcul étape par étape. Idéal pour les étudiants et professionnels souhaitant maîtriser une méthode essentielle en assurance non-vie.",
     "preview": "fichiers/previews/chain-ladder-preview.svg",
-    "lien_lecture": "",
-    "lien_achat": "https://selar.co/actuairex/chain-ladder",
-    "prix": "2 000 XOF",
-    "gratuit": false,
-    "type_fichier": "Excel"
+    "lien_lecture": "\"C:\\JUnior\\actuairex\\fichiers\\pdf\\ActuaireX C L.pdf\"",
+    "lien_achat": "",
+    "prix": "",
+    "gratuit": true,
+    "telechargeable": false,
+    "type_fichier": "PDF"
   },
   {
     "id": 2,
