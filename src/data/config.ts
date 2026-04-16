@@ -1,0 +1,29 @@
+export const siteConfig = {
+  nom: "ActuaireX",
+  slogan: "Comprendre l'actuariat simplement",
+  description: "Une plateforme dédiée à la vulgarisation de l'actuariat, de l'assurance et de la gestion des risques — pensée pour l'Afrique et le monde francophone.",
+  email: "actuaire.xx@gmail.com",
+  linkedin: "https://www.linkedin.com/company/actuairex/",
+  tiktok: "https://www.tiktok.com/@a.c.t.u.a.i.r.e.x",
+  pays: "Côte d'Ivoire",
+  annee_creation: "2025",
+  substack: "https://actuairex.substack.com",
+  selar: "https://selar.com/m/dramanesiejuniortoure",
+  youtube: "https://youtube.com/@actuairex",
+};
+
+export const apropos = {
+  titre: "Qui est ActuaireX ?",
+  intro: "ActuaireX est une initiative née en Côte d'Ivoire avec une mission simple : rendre l'actuariat accessible à tous.",
+  mission: "Ma mission est de démystifier l'actuariat, l'assurance et la gestion des risques pour les étudiants, professionnels et curieux du monde francophone — en particulier en Afrique.",
+  paragraphes: [
+    "L'actuariat est l'une des professions les plus méconnues et pourtant les plus essentielles du secteur financier. Elle se trouve à l'intersection des mathématiques, de la statistique, de la finance et du droit.",
+    "Après avoir constaté le manque de ressources pédagogiques en français et adaptées au contexte africain, j'ai créé ActuaireX pour combler ce vide.",
+    "Ici tu trouveras des articles de fond, des vidéos courtes, des outils pratiques et des calculateurs — tout pour progresser à ton rythme.",
+  ],
+  valeurs: [
+    { icone: "◈", titre: "Clarté", texte: "Expliquer les concepts complexes avec des mots simples et des exemples concrets." },
+    { icone: "◉", titre: "Rigueur", texte: "Des contenus vérifiés, fondés sur des sources académiques et professionnelles sérieuses." },
+    { icone: "◎", titre: "Accessibilité", texte: "Des ressources gratuites, en français, adaptées au contexte africain et francophone." },
+  ],
+};

@@ -1,0 +1,28 @@
+export const devenirActuaire = {
+  intro: "L'actuaire est l'un des métiers les plus recherchés et les mieux rémunérés du secteur financier. Voici tout ce que tu dois savoir pour y accéder.",
+  metier: {
+    description: "L'actuaire analyse et modélise les risques financiers liés à des événements incertains. Il travaille principalement dans les compagnies d'assurance, les fonds de pension, les banques et les cabinets de conseil.",
+    salaire_debutant: "Entre 35 000 et 55 000 € brut/an en Europe. En Côte d'Ivoire et zone CIMA, les profils qualifiés sont très recherchés avec des salaires compétitifs.",
+    debouches: ["Compagnie d'assurance vie ou non-vie", "Fonds de retraite et de pension", "Banque et finance quantitative", "Cabinet de conseil actuariel", "Régulateur (ACPR, CIMA)", "Data science et risk management"],
+  },
+  etudes: [
+    {
+      niveau: "Bac+5 minimum",
+      description: "Un master en mathématiques appliquées, statistiques, économétrie ou actuariat est la voie classique.",
+      exemples: ["Master Actuariat (Paris Dauphine, ISFA Lyon)", "Master Mathématiques Appliquées", "École d'ingénieur avec spécialisation finance/risque"],
+    },
+    {
+      niveau: "Certifications professionnelles",
+      description: "Des certifications reconnues renforcent le profil et permettent l'accès au titre d'actuaire agréé.",
+      exemples: ["Titre d'Actuaire (Institut des Actuaires - France)", "Fellow of the Society of Actuaries (FSA - USA)", "Examens CIMA pour la zone Afrique francophone"],
+    },
+  ],
+  competences: [
+    { domaine: "Mathématiques", details: "Probabilités, statistiques, calcul stochastique, analyse numérique" },
+    { domaine: "Informatique", details: "R, Python, Excel avancé, SAS, bases de données SQL" },
+    { domaine: "Finance", details: "Comptabilité, finance d'entreprise, marchés financiers" },
+    { domaine: "Droit", details: "Droit des assurances, réglementation Solvabilité II / CIMA / IFRS 17" },
+    { domaine: "Communication", details: "Capacité à vulgariser des résultats techniques pour des non-spécialistes" },
+  ],
+  matieres: ["Mathématiques actuarielles vie et non-vie", "Statistiques et économétrie", "Finance et gestion actif-passif (ALM)", "Droit des assurances", "Comptabilité et IFRS", "Modélisation stochastique", "Solvabilité II / IFRS 17"],
+};

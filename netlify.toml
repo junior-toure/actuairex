@@ -1,0 +1,48 @@
+# ── REDIRECTIONS ──
+[[redirects]]
+  from = "http://actuairex.com/*"
+  to   = "https://actuairex.com/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "https://www.actuairex.com/*"
+  to   = "https://actuairex.com/:splat"
+  status = 301
+  force  = true
+
+# Page 404 personnalisée
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# ── HEADERS DE SÉCURITÉ ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.onesignal.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://actuairex.disqus.com https://c.disquscdn.com https://cdn.onesignal.com https://onesignal.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://www.google-analytics.com https://onesignal.com https://*.onesignal.com; frame-src https://actuairex.disqus.com https://onesignal.com; worker-src https://cdn.onesignal.com;"
+
+# Headers pour le sitemap
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=86400"
+
+# Cache pour les fichiers statiques
+[[headers]]
+  for = "/fichiers/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

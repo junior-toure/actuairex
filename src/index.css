@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 45 7% 89%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 45 7% 89%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 45 7% 89%;
+
+    --primary: 150 100% 45%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 45 7% 89%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 45 1% 53%;
+
+    --accent: 0 0% 10%;
+    --accent-foreground: 45 7% 89%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.07;
+    --border-bright: 0 0% 100% / 0.15;
+    --input: 0 0% 100% / 0.07;
+    --ring: 150 100% 45%;
+
+    --radius: 0px;
+
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+
+    --green-glow: 150 100% 45% / 0.15;
+
+    --surface-1: 0 0% 5%;
+    --surface-2: 0 0% 8%;
+    --surface-3: 0 0% 10%;
+
+    --text-dim: 45 1% 27%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+  }
+}
+
+@layer utilities {
+  .font-mono-ax {
+    font-family: var(--font-mono);
+  }
+  .font-serif-ax {
+    font-family: var(--font-serif);
+  }
+  .font-sans-ax {
+    font-family: var(--font-sans);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: hsl(var(--primary));
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
