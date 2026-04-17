@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titre": "Méthode Chain Ladder expliquée simplement | Actuariat pour tous",
+    "plateforme": "YouTube",
+    "url": "https://youtu.be/VVLeWROmgUM",
+    "date": "2026-03-16",
+    "duree": "90s",
+    "description": "Description courte : « Découvrez la méthode Chain Ladder, utilisée par les actuaires pour estimer les sinistres futurs en assurance non-vie, expliquée simplement pour tous ! »"
+  },
+  {
+    "id": 2,
+    "titre": "L’IA ne remplace pas les actuaires…….voilà pourquoi",
+    "plateforme": "TikTok",
+    "url": "https://vt.tiktok.com/ZSu9vpRwV/",
+    "date": "2025-12-17",
+    "duree": "40s",
+    "description": "L’IA progresse, mais peut-elle vraiment remplacer les actuaires ? Dans cette vidéo, je vous explique pourquoi l’expertise humaine reste indispensable en actuariat."
+  },
+  {
+    "id": 3,
+    "titre": "La loi des grands nombres expliquée simplement",
+    "plateforme": "TikTok",
+    "url": "https://tiktok.com/@actuairex",
+    "date": "2025-02-20",
+    "duree": "75s",
+    "description": "Le principe mathématique fondamental derrière toute l'industrie de l'assurance."
+  },
+  {
+    "id": 4,
+    "titre": "Actuaire : le métier le mieux payé dont personne ne parle",
+    "plateforme": "YouTube",
+    "url": "https://youtube.com/@actuairex",
+    "date": "2025-03-01",
+    "duree": "8min",
+    "description": "Salaires, débouchés, formations — tout sur la carrière d'actuaire en Afrique."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "titre": "Comment fonctionne une assurance ?",
+    "categorie": "Bases de l'assurance",
+    "tag": "Débutant",
+    "date": "2025-02-10",
+    "resume": "L'assurance repose sur un principe simple : mutualiser les risques entre de nombreuses personnes pour que personne ne supporte seul une perte importante.",
+    "contenu": "L'assurance est un mécanisme de solidarité organisée. Imaginez 1000 personnes qui possèdent chacune une voiture. Statistiquement, peut-être 30 d'entre elles auront un accident cette année.\n\nPlutôt que chaque personne supporte seule le coût d'un accident (qui peut être très élevé), tout le monde cotise une petite somme chaque mois. Cet argent mis en commun permet d'indemniser les 30 personnes qui ont eu un accident.\n\nC'est le principe de la mutualisation des risques : on répartit le coût d'un événement rare mais coûteux sur un grand nombre de personnes.\n\nL'actuaire est le professionnel qui calcule combien chaque personne doit cotiser pour que le système soit équilibré.",
+    "lecture": "5 min"
+  },
+  {
+    "id": 2,
+    "titre": "Pourquoi les assurances font des provisions ?",
+    "categorie": "Bases de l'actuariat",
+    "tag": "Intermédiaire",
+    "date": "2025-02-18",
+    "resume": "Une provision technique n'est pas un bénéfice mis de côté : c'est une dette envers les assurés futurs.",
+    "contenu": "Quand une compagnie d'assurance reçoit une prime aujourd'hui, elle prend un engagement pour l'avenir : indemniser si un sinistre survient.\n\nLes provisions techniques sont les sommes qu'elle doit mettre de côté dès maintenant pour honorer ces engagements futurs. Ce n'est pas de l'argent gagné — c'est une dette envers les assurés.\n\nIl existe plusieurs types de provisions : les provisions pour sinistres à payer (PSAP) pour les sinistres déclarés mais pas encore réglés, et les provisions pour risques en cours pour les engagements futurs.\n\nSous Solvabilité II, le régulateur exige que ces provisions soient calculées comme le Best Estimate — la meilleure estimation actualisée des flux futurs — plus une marge de risque.",
+    "lecture": "7 min"
+  },
+  {
+    "id": 3,
+    "titre": "Actuariat vs Data Science : quelles différences ?",
+    "categorie": "Bases de l'actuariat",
+    "tag": "Débutant",
+    "date": "2025-03-01",
+    "resume": "On confond souvent actuaire et data scientist. Pourtant ces deux métiers ont des cultures, des outils et des objectifs très différents.",
+    "contenu": "L'actuaire et le data scientist travaillent tous les deux avec des données et des modèles statistiques. Mais leurs approches sont fondamentalement différentes.\n\nL'actuaire est avant tout un gestionnaire du risque financier à long terme. Il travaille dans un cadre réglementaire strict (Solvabilité II, IFRS 17), avec des horizons de projection de 10, 20, parfois 50 ans.\n\nLe data scientist cherche à maximiser la performance prédictive d'un modèle sur des données historiques. Il utilise des algorithmes de machine learning parfois difficiles à interpréter.\n\nEn pratique, les deux approches se complètent. Les actuaires intègrent de plus en plus les techniques de data science, notamment pour la tarification et la détection de fraude.",
+    "lecture": "6 min"
+  },
+  {
+    "id": 4,
+    "titre": "L'actuariat en Afrique : état des lieux et perspectives",
+    "categorie": "Actualités",
+    "tag": "Afrique",
+    "date": "2025-03-10",
+    "resume": "Le marché de l'assurance africain est l'un des plus sous-développés au monde, mais aussi l'un des plus porteurs. Quel rôle pour les actuaires ?",
+    "contenu": "Le taux de pénétration de l'assurance en Afrique subsaharienne est inférieur à 3% du PIB dans la plupart des pays, contre 8 à 12% en Europe.\n\nEn Côte d'Ivoire, le marché des assurances est régi par le code CIMA (Conférence Interafricaine des Marchés d'Assurances), qui couvre 14 pays d'Afrique francophone.\n\nLes défis spécifiques au contexte africain sont nombreux : manque de données historiques fiables, risques climatiques croissants, économie informelle difficile à assurer.\n\nMais les opportunités sont réelles : émergence de l'assurance mobile, micro-assurance agricole, boom démographique créant de nouveaux marchés. Pour les jeunes actuaires africains, c'est un terrain d'innovation extraordinaire.",
+    "lecture": "8 min"
+  }
+]

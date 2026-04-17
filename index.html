@@ -1,57 +1,1296 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ActuaireX — Comprendre l'actuariat simplement</title>
-    <meta name="description" content="Vulgarisation de l'actuariat, de l'assurance et de la gestion des risques pour l'Afrique francophone." />
-    <meta property="og:title" content="ActuaireX — Comprendre l'actuariat simplement" />
-    <meta property="og:description" content="Vulgarisation de l'actuariat, de l'assurance et de la gestion des risques pour l'Afrique francophone." />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ActuaireX — Comprendre l'actuariat simplement" />
-    <meta name="twitter:description" content="Science actuarielle, assurance et gestion des risques — Côte d'Ivoire." />
-    <meta name="robots" content="index, follow" />
-    <meta name="keywords" content="actuariat, assurance, actuaire, Côte d'Ivoire, CIMA, gestion des risques, finance actuarielle" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ActuaireX",
-      "description": "Plateforme de vulgarisation de l'actuariat, de l'assurance et de la gestion des risques pour l'Afrique francophone.",
-      "inLanguage": "fr"
-    }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ActuaireX — Comprendre l'actuariat simplement</title>
+<meta property="og:title" content="ActuaireX — Comprendre l'actuariat simplement"/>
+<meta property="og:description" content="Vulgarisation de l'actuariat, de l'assurance et de la gestion des risques pour l'Afrique francophone."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://actuairex.netlify.app"/>
+<meta property="og:image" content="https://actuairex.netlify.app/logo.svg"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="ActuaireX — Comprendre l'actuariat simplement"/>
+<meta name="twitter:description" content="Science actuarielle, assurance et gestion des risques — Côte d'Ivoire."/>
+<meta name="robots" content="index, follow"/>
+<meta name="keywords" content="actuariat, assurance, actuaire, Côte d'Ivoire, CIMA, gestion des risques, finance actuarielle"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bk:#050505;--s1:#0d0d0d;--s2:#141414;--s3:#1a1a1a;
+  --bd:rgba(255,255,255,0.07);--bdb:rgba(255,255,255,0.15);
+  --gr:#00e676;--grd:rgba(0,230,118,0.15);
+  --tx:#e8e8e0;--tm:#888880;--td:#444440;
+  --mo:'IBM Plex Mono',monospace;--se:'Playfair Display',serif;--sa:'IBM Plex Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--tx);font-family:var(--mo);font-size:14px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px)}
+#bar{position:fixed;top:0;left:0;right:0;height:48px;background:rgba(5,5,5,0.96);
+  border-bottom:1px solid var(--bd);display:flex;align-items:center;
+  justify-content:space-between;padding:0 1.5rem;z-index:1000;backdrop-filter:blur(12px);gap:1rem}
+.logo{font-weight:700;font-size:15px;letter-spacing:.1em;color:var(--gr);cursor:pointer;flex-shrink:0}
+.logo span{color:var(--tm);font-weight:300}
+nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tm);
+  text-decoration:none;cursor:pointer;padding:0 .8rem;height:48px;display:flex;align-items:center;
+  border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap;flex-shrink:0}
+nav a:hover{color:var(--tx)}
+nav a.on{color:var(--gr);border-bottom-color:var(--gr)}
+.hbg{display:none;background:none;border:none;color:var(--tm);font-size:20px;cursor:pointer;flex-shrink:0}
+.page{display:none;min-height:100vh;padding-top:48px}
+.page.on{display:block}
+.w{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+.wn{max-width:760px;margin:0 auto;padding:5rem 2rem}
+.sh{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem;
+  padding-bottom:1rem;border-bottom:1px solid var(--bd)}
+.st{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gr);white-space:nowrap}
+.stt{font-family:var(--se);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:#fff}
+.sl{flex:1;height:1px;background:var(--bd)}
+.lbl{display:inline-block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gr);border:1px solid var(--grd);padding:3px 10px}
+.lbl-g{color:var(--tm);border-color:var(--bd)}
+.lbl-d{color:var(--td);border-color:var(--bd)}
+.btn{display:inline-block;font-family:var(--mo);font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;cursor:pointer;
+  text-decoration:none;border:none;transition:opacity .2s}
+.btn-g{background:var(--gr);color:#000}
+.btn-g:hover{opacity:.85}
+.btn-o{background:transparent;color:var(--tx);border:1px solid var(--bdb);font-weight:400}
+.btn-o:hover{border-color:var(--gr);color:var(--gr)}
+.blink{display:inline-block;width:2px;height:.85em;background:var(--gr);
+  margin-left:4px;vertical-align:middle;animation:bk 1s step-end infinite}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0}}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--bd)}
+.card{background:var(--s1);padding:1.75rem;cursor:pointer;position:relative;overflow:hidden;transition:background .2s}
+.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--gr);transform:scaleY(0);transform-origin:top;transition:transform .3s}
+.card:hover{background:var(--s2)}
+.card:hover::before{transform:scaleY(1)}
+.cc{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gr);margin-bottom:.75rem}
+.card h3{font-family:var(--se);font-size:1.15rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.75rem}
+.card p{font-family:var(--sa);font-size:13px;color:var(--tm);line-height:1.7;font-weight:300}
+.cf{display:flex;justify-content:space-between;align-items:center;
+  margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--bd);font-size:11px;color:var(--td)}
+.cf .gr{color:var(--gr)}
+#hero{min-height:calc(100vh - 48px);display:grid;grid-template-rows:1fr auto;
+  padding:80px 2rem 4rem;position:relative;overflow:hidden}
+.hbg-grid{position:absolute;inset:0;
+  background-image:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 40%,transparent 100%)}
+.hglow{position:absolute;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,230,118,0.05) 0%,transparent 70%);
+  top:5%;left:25%;pointer-events:none}
+.hc{position:relative;max-width:900px;margin:auto;text-align:center}
+.hey{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gr);border:1px solid var(--grd);padding:4px 14px;margin-bottom:2rem}
+.ht{font-family:var(--se);font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:.95;color:#fff;margin-bottom:1rem}
+.ht em{font-style:italic;color:var(--gr)}
+.hst{font-family:var(--se);font-size:clamp(1rem,2vw,1.5rem);font-weight:700;color:var(--tm);margin-bottom:1.5rem;font-style:italic}
+.hd{font-family:var(--sa);font-size:16px;font-weight:300;color:var(--tm);max-width:540px;margin:0 auto 2.5rem;line-height:1.8}
+.hcta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.hstats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding-top:3rem;border-top:1px solid var(--bd)}
+.sn{font-size:2rem;font-weight:700;color:#fff}
+.sn span{color:var(--gr)}
+.sl2{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin-top:2px}
+.hs{max-width:1100px;margin:0 auto;padding:4rem 2rem}
+.sa-btn{display:inline-flex;align-items:center;gap:8px;color:var(--gr);font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;
+  font-family:var(--mo);margin-top:2rem}
+.sa-btn:hover{opacity:.75}
+.fb{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap}
+.fbtn{background:transparent;border:1px solid var(--bd);color:var(--tm);font-family:var(--mo);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;cursor:pointer;transition:all .2s}
+.fbtn:hover,.fbtn.on{border-color:var(--gr);color:var(--gr)}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--bd)}
+.vc{background:var(--s1);padding:1.75rem;transition:background .2s;cursor:pointer}
+.vc:hover{background:var(--s2)}
+.vt{width:100%;aspect-ratio:16/9;background:var(--s3);border:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;position:relative}
+.vi{font-size:2rem;color:var(--gr);opacity:.8}
+.vp{position:absolute;top:8px;right:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--bk);color:var(--gr);border:1px solid var(--grd);padding:2px 8px}
+.vd{position:absolute;bottom:8px;right:8px;font-size:10px;background:rgba(0,0,0,.8);color:var(--tm);padding:2px 6px}
+.vtitle{font-family:var(--se);font-size:1.1rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.5rem}
+.vdesc{font-family:var(--sa);font-size:12px;color:var(--tm);line-height:1.6;font-weight:300}
+.vdate{font-size:11px;color:var(--td);margin-top:.75rem}
+.tkcta{margin-top:3rem;padding:2rem;border:1px solid var(--bd);background:var(--s1);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.tkcta p{font-family:var(--sa);font-size:14px;color:var(--tm);font-weight:300}
+.tkcta strong{color:var(--gr)}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--tm);font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:3rem;cursor:pointer;
+  transition:color .2s;background:none;border:none;font-family:var(--mo)}
+.back:hover{color:var(--gr)}
+.am{display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap}
+.ati{font-family:var(--se);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;
+  color:#fff;line-height:1.05;margin-bottom:1.5rem}
+.ar{font-family:var(--sa);font-size:16px;font-weight:300;color:var(--tm);
+  line-height:1.8;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--bd)}
+.ab{font-family:var(--sa);font-size:16px;font-weight:300;color:var(--tx);line-height:1.9}
+.ab p{margin-bottom:1.5rem}
+.apg{display:grid;grid-template-columns:1fr 1.8fr;gap:5rem;margin-bottom:5rem}
+.apav{width:100%;aspect-ratio:1;background:var(--s2);border:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:center;font-family:var(--se);
+  font-size:5rem;font-weight:900;color:var(--gr);font-style:italic;position:relative}
+.apav::after{content:'CI';position:absolute;bottom:12px;right:12px;font-family:var(--mo);
+  font-size:10px;letter-spacing:.1em;color:var(--td)}
+.aph2{font-family:var(--se);font-size:2.2rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:1rem}
+.apintro{font-family:var(--sa);font-size:17px;font-weight:400;color:var(--gr);line-height:1.7;margin-bottom:1.5rem}
+.app{font-family:var(--sa);font-size:15px;font-weight:300;color:var(--tm);line-height:1.9;margin-bottom:1rem}
+.vg3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bd);margin-top:4rem}
+.vc3{background:var(--s1);padding:2rem}
+.vic{font-size:1.5rem;color:var(--gr);margin-bottom:1rem}
+.vc3 h4{font-family:var(--se);font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.5rem}
+.vc3 p{font-family:var(--sa);font-size:13px;color:var(--tm);line-height:1.7;font-weight:300}
+.gs{width:100%;background:var(--s1);border:1px solid var(--bd);padding:12px 18px;
+  font-family:var(--mo);font-size:14px;color:var(--tx);outline:none;margin-bottom:1.5rem;transition:border-color .2s}
+.gs:focus{border-color:var(--gr)}
+.gs::placeholder{color:var(--td)}
+.gi{border-bottom:1px solid var(--bd);padding:1.5rem 0;cursor:pointer}
+.gi:last-child{border-bottom:none}
+.gt{display:flex;align-items:center;gap:1rem}
+.gt h3{font-family:var(--se);font-size:1.2rem;font-weight:700;color:#fff;transition:color .2s}
+.ga{color:var(--td);font-size:12px;transition:transform .3s}
+.gi.op .ga{transform:rotate(90deg)}
+.gi.op .gt h3{color:var(--gr)}
+.gb{display:none;padding-top:1rem}
+.gi.op .gb{display:block}
+.gdef{font-family:var(--sa);font-size:14px;font-weight:300;color:var(--tx);line-height:1.8;margin-bottom:1rem}
+.gex{font-family:var(--mo);font-size:12px;color:var(--tm);background:var(--s2);
+  border-left:2px solid var(--gr);padding:.75rem 1rem;line-height:1.7}
+.gex::before{content:'Ex. : ';color:var(--gr)}
+.rl{display:flex;flex-direction:column;gap:1px;background:var(--bd)}
+.ri{background:var(--s1);padding:1.5rem 1.75rem;display:flex;align-items:center;
+  gap:1.5rem;transition:background .2s}
+.ri:hover{background:var(--s2)}
+.ricon{width:44px;height:44px;border:1px solid var(--bd);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:18px}
+.rinfo{flex:1}
+.rinfo h4{font-family:var(--se);font-size:1rem;font-weight:700;color:#fff;margin-bottom:.25rem}
+.rinfo p{font-family:var(--sa);font-size:12px;color:var(--tm);font-weight:300;line-height:1.5}
+.rmeta{display:flex;gap:.5rem;margin-top:.5rem;flex-wrap:wrap}
+.ract{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0}
+.rln{font-size:11px;color:var(--gr);text-decoration:none;letter-spacing:.08em;white-space:nowrap;
+  background:none;border:none;font-family:var(--mo);cursor:pointer}
+.pj{border-bottom:1px solid var(--bd);padding:1.75rem 0}
+.pj:last-child{border-bottom:none}
+.pj h3{font-family:var(--se);font-size:1.2rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:.75rem}
+.pj p{font-family:var(--sa);font-size:13px;color:var(--tm);line-height:1.7;font-weight:300;margin-bottom:1.25rem}
+.pjf{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.daint{font-family:var(--sa);font-size:16px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:3rem;max-width:700px}
+.das{margin-bottom:4rem}
+.das h3{font-family:var(--se);font-size:1.5rem;font-weight:700;color:#fff;
+  margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--bd)}
+.dag{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--bd)}
+.dai{background:var(--s1);padding:1.5rem}
+.dai h4{font-family:var(--mo);font-size:13px;font-weight:700;color:#fff;margin-bottom:.5rem}
+.dai p{font-family:var(--sa);font-size:12px;color:var(--tm);line-height:1.6;font-weight:300}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{font-size:12px;border:1px solid var(--bd);color:var(--tm);padding:5px 12px}
+.sbox{background:var(--s1);border:1px solid var(--bd);padding:2rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.snum{font-family:var(--se);font-size:2.5rem;font-weight:900;color:var(--gr);line-height:1}
+.sdesc{font-family:var(--sa);font-size:14px;font-weight:300;color:var(--tm);line-height:1.7}
+.ctg{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem}
+.cti h3{font-family:var(--se);font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:1rem}
+.cti p{font-family:var(--sa);font-size:14px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:2rem}
+.cls{display:flex;flex-direction:column;gap:1rem}
+.cl{display:flex;align-items:center;gap:1rem;color:var(--tm);text-decoration:none;font-size:13px;transition:color .2s}
+.cl:hover{color:var(--gr)}
+.ci{width:36px;height:36px;border:1px solid var(--bd);display:flex;align-items:center;
+  justify-content:center;font-size:13px;flex-shrink:0;font-family:var(--mo);transition:border-color .2s}
+.cl:hover .ci{border-color:var(--gr)}
+.cf2{display:flex;flex-direction:column;gap:1rem}
+.cf2 input,.cf2 textarea{background:var(--s1);border:1px solid var(--bd);padding:12px 16px;
+  font-family:var(--mo);font-size:13px;color:var(--tx);outline:none;resize:none;transition:border-color .2s}
+.cf2 input:focus,.cf2 textarea:focus{border-color:var(--gr)}
+.cf2 input::placeholder,.cf2 textarea::placeholder{color:var(--td)}
+.cf2 textarea{height:130px}
+.lb{font-family:var(--sa);font-size:15px;font-weight:300;color:var(--tm);line-height:1.9}
+.lb h3{font-family:var(--se);font-size:1.2rem;font-weight:700;color:#fff;margin:2rem 0 .75rem}
+.lb p{margin-bottom:1rem}
+.lb ul{padding-left:1.5rem;margin-bottom:1rem}
+.lb li{margin-bottom:.4rem}
+.nl{background:var(--s1);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:3.5rem 2rem;text-align:center}
+.nli{max-width:560px;margin:0 auto}
+.nlti{font-family:var(--se);font-size:2rem;font-weight:700;color:#fff;margin-bottom:.75rem}
+.nld{font-family:var(--sa);font-size:14px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:1.5rem}
+.nlf{display:flex}
+.nlf input{flex:1;background:var(--bk);border:1px solid var(--bdb);border-right:none;
+  padding:12px 16px;font-family:var(--mo);font-size:13px;color:var(--tx);outline:none;transition:border-color .2s}
+.nlf input:focus{border-color:var(--gr)}
+.nlf input::placeholder{color:var(--td)}
+.nlf button{background:var(--gr);border:none;padding:12px 22px;font-family:var(--mo);
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#000;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.nlf button:hover{opacity:.85}
+.nlnote{font-size:11px;color:var(--td);margin-top:.75rem}
 
+/* ── RESSOURCES PAYANTES ── */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:var(--bd)}
+.res-card{background:var(--s1);transition:background .2s;overflow:hidden}
+.res-card:hover{background:var(--s2)}
+.res-preview{position:relative;width:100%;aspect-ratio:16/9;background:var(--s3);overflow:hidden;cursor:pointer}
+.res-preview img,.res-preview object{width:100%;height:100%;object-fit:cover;display:block}
+.res-preview-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;
+  align-items:center;justify-content:center;transition:background .3s}
+.res-card:hover .res-preview-overlay{background:rgba(0,0,0,0.5)}
+.res-preview-zoom{opacity:0;color:#fff;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;font-family:var(--mo);transition:opacity .3s;font-weight:700}
+.res-card:hover .res-preview-zoom{opacity:1}
+.res-wm{position:absolute;bottom:0;left:0;right:0;background:rgba(0,230,118,0.12);
+  border-top:1px solid rgba(0,230,118,0.3);padding:4px 10px;
+  font-family:var(--mo);font-size:10px;color:var(--gr);letter-spacing:.08em;text-align:center}
+.res-body{padding:1.25rem 1.5rem}
+.res-type-row{display:flex;gap:.5rem;margin-bottom:.75rem;align-items:center;flex-wrap:wrap}
+.res-title{font-family:var(--se);font-size:1.1rem;font-weight:700;color:#fff;
+  line-height:1.3;margin-bottom:.5rem}
+.res-desc{font-family:var(--sa);font-size:12px;color:var(--tm);line-height:1.6;
+  font-weight:300;margin-bottom:1.25rem}
+.res-footer{display:flex;align-items:center;justify-content:space-between;
+  padding-top:1rem;border-top:1px solid var(--bd);gap:.75rem;flex-wrap:wrap}
+.res-price{font-family:var(--mo);font-size:1rem;font-weight:700;color:var(--gr)}
+.res-price-free{font-size:11px;color:var(--tm);letter-spacing:.08em;text-transform:uppercase}
+.res-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.res-btn-read{background:transparent;border:1px solid var(--bdb);color:var(--tx);
+  font-family:var(--mo);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.res-btn-read:hover{border-color:var(--gr);color:var(--gr)}
+.res-btn-buy{background:var(--gr);border:none;color:#000;font-family:var(--mo);
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block}
+.res-btn-buy:hover{opacity:.85}
+/* Modal preview */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;
+  display:none;align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--s1);border:1px solid var(--bd);max-width:800px;width:100%;
+  max-height:90vh;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.modal-head{display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 1.5rem;border-bottom:1px solid var(--bd);flex-shrink:0}
+.modal-title{font-family:var(--se);font-size:1.1rem;font-weight:700;color:#fff}
+.modal-close{background:none;border:none;color:var(--tm);font-size:20px;cursor:pointer;
+  transition:color .2s;font-family:var(--mo)}
+.modal-close:hover{color:var(--gr)}
+.modal-body{padding:1.5rem;overflow-y:auto;flex:1}
+.modal-img{width:100%;display:block}
+.modal-wm-notice{margin-top:1rem;padding:.75rem 1rem;background:var(--s3);
+  border-left:2px solid var(--gr);font-family:var(--mo);font-size:11px;
+  color:var(--tm);line-height:1.7}
+.modal-wm-notice strong{color:var(--gr)}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;flex-wrap:wrap;gap:.75rem}
+.modal-price{font-family:var(--mo);font-size:1.1rem;font-weight:700;color:var(--gr)}
+/* PDF viewer */
+.pdf-viewer{width:100%;height:500px;border:none;background:var(--s3)}
+.licence-box{background:var(--s3);border:1px solid var(--bd);padding:1rem 1.25rem;
+  margin-bottom:1rem;font-family:var(--mo);font-size:11px;color:var(--tm);line-height:1.8}
+.licence-box strong{color:var(--gr);display:block;margin-bottom:.5rem}
+
+
+/* ── LECTEUR PDF INTÉGRÉ ── */
+.pdf-reader-wrap{position:relative;width:100%;background:var(--s3);border:1px solid var(--bd)}
+.pdf-reader-toolbar{display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 1rem;background:var(--s2);border-bottom:1px solid var(--bd);flex-wrap:wrap;gap:.5rem}
+.pdf-reader-toolbar-title{font-family:var(--mo);font-size:12px;color:var(--tm);letter-spacing:.05em}
+.pdf-reader-toolbar-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gr);border:1px solid var(--grd);padding:2px 8px}
+.pdf-reader-toolbar-lock{font-size:11px;color:var(--td);display:flex;align-items:center;gap:6px}
+.pdf-frame-container{position:relative;width:100%;height:620px}
+.pdf-frame{width:100%;height:100%;border:none;display:block}
+/* Overlay transparent qui bloque clic droit sur le PDF */
+.pdf-block-overlay{position:absolute;inset:0;z-index:10;cursor:default}
+.pdf-bottom-bar{display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1rem;background:var(--s2);border-top:1px solid var(--bd);flex-wrap:wrap;gap:.75rem}
+.pdf-bottom-note{font-family:var(--sa);font-size:12px;font-weight:300;color:var(--td);line-height:1.6}
+.pdf-bottom-note strong{color:var(--tm)}
+
+
+
+/* ── SUBSTACK NEWSLETTER ── */
+.nl-substack-box{background:var(--s1);border:1px solid var(--bd);padding:2rem;
+  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin-top:3rem}
+.nl-substack-info{flex:1}
+.nl-substack-info h3{font-family:var(--se);font-size:1.4rem;font-weight:700;
+  color:#fff;margin-bottom:.5rem}
+.nl-substack-info p{font-family:var(--sa);font-size:14px;font-weight:300;
+  color:var(--tm);line-height:1.7}
+.nl-substack-info .stats{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
+.nl-substack-info .stat{font-family:var(--mo);font-size:11px;color:var(--gr);
+  letter-spacing:.08em}
+.btn-substack{background:var(--gr);border:none;color:#000;font-family:var(--mo);
+  font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:14px 28px;cursor:pointer;transition:opacity .2s;text-decoration:none;
+  display:inline-block;white-space:nowrap;flex-shrink:0}
+.btn-substack:hover{opacity:.85}
+.substack-note{font-size:11px;color:var(--td);margin-top:.75rem;font-family:var(--mo)}
+
+/* ── BANDEAU COOKIES ── */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--s2);
+  border-top:1px solid var(--bd);padding:1rem 2rem;display:flex;
+  align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  z-index:8000;transform:translateY(100%);transition:transform .4s;backdrop-filter:blur(12px)}
+#cookie-banner.show{transform:translateY(0)}
+.cookie-text{font-family:var(--sa);font-size:13px;font-weight:300;color:var(--tm);
+  line-height:1.6;max-width:700px}
+.cookie-text strong{color:var(--tx)}
+.cookie-text a{color:var(--gr);text-decoration:none}
+.cookie-btns{display:flex;gap:.75rem;flex-shrink:0;flex-wrap:wrap}
+.cookie-btn-ok{background:var(--gr);border:none;color:#000;font-family:var(--mo);
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:9px 20px;cursor:pointer;transition:opacity .2s}
+.cookie-btn-ok:hover{opacity:.85}
+.cookie-btn-no{background:transparent;border:1px solid var(--bd);color:var(--tm);
+  font-family:var(--mo);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  padding:9px 20px;cursor:pointer;transition:all .2s}
+.cookie-btn-no:hover{border-color:var(--gr);color:var(--gr)}
+
+/* ── PAGE 404 ── */
+#page-404 .wrap404{max-width:600px;margin:0 auto;padding:8rem 2rem;text-align:center}
+.err-code{font-family:var(--se);font-size:8rem;font-weight:900;color:var(--gr);
+  line-height:1;opacity:.15;position:absolute;left:50%;transform:translateX(-50%)}
+.err-title{font-family:var(--se);font-size:2.5rem;font-weight:700;color:#fff;
+  margin-bottom:1rem;position:relative}
+.err-desc{font-family:var(--sa);font-size:16px;font-weight:300;color:var(--tm);
+  line-height:1.8;margin-bottom:2.5rem}
+
+/* ── COMMENTAIRES DISQUS ── */
+.disqus-wrap{max-width:760px;margin:0 auto;padding:3rem 2rem 2rem;
+  border-top:1px solid var(--bd)}
+.disqus-title{font-family:var(--se);font-size:1.5rem;font-weight:700;color:#fff;
+  margin-bottom:1.5rem}
+#disqus_thread a{color:var(--gr) !important}
+
+footer{border-top:1px solid var(--bd);padding:2rem;display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:11px;color:var(--td)}
+footer a{color:var(--td);text-decoration:none;cursor:pointer}
+footer a:hover{color:var(--gr)}
+.fn{display:flex;gap:2rem;flex-wrap:wrap}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--gr);color:#000;
+  font-family:var(--mo);font-size:12px;font-weight:700;padding:12px 20px;
+  transform:translateY(80px);opacity:0;transition:all .4s;z-index:9000;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:768px){
+  nav{display:none;position:fixed;top:48px;left:0;right:0;background:rgba(5,5,5,.98);
+    flex-direction:column;border-bottom:1px solid var(--bd);z-index:999;overflow-y:auto;max-height:calc(100vh - 48px)}
+  nav.open{display:flex}
+  nav a{padding:1rem 2rem;height:auto;border-bottom:1px solid var(--bd);border-left:none}
+  .hbg{display:block}
+  .apg{grid-template-columns:1fr;gap:2rem}
+  .vg3{grid-template-columns:1fr}
+  .ctg{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JL1VR32BJF"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-JL1VR32BJF', { anonymize_ip: true });
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ActuaireX",
+  "url": "https://actuairex.netlify.app",
+  "description": "Plateforme de vulgarisation de l'actuariat, de l'assurance et de la gestion des risques pour l'Afrique francophone.",
+  "inLanguage": "fr",
+  "publisher": {
+    "@type": "Person",
+    "name": "ActuaireX",
+    "url": "https://actuairex.netlify.app",
+    "sameAs": [
+      "https://tiktok.com/@actuairex",
+      "https://linkedin.com/in/actuairex"
+    ]
+  }
+}
+</script>
+<script type="application/ld+json" id="ld-article"></script>
+<!-- OneSignal Push Notifications -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "33bc562f-b67b-4696-add9-30bb797e16c1",
+      notifyButton: {
+        enable: true,
+        size: "medium",
+        theme: "default",
+        position: "bottom-left",
+        offset: { bottom: "70px", left: "20px" },
+        text: {
+          "tip.state.unsubscribed": "S'abonner aux notifications ActuaireX",
+          "tip.state.subscribed": "Vous êtes abonné aux notifications",
+          "tip.state.blocked": "Notifications bloquées",
+          "message.prenotify": "Cliquez pour vous abonner aux notifications ActuaireX",
+          "message.action.subscribed": "Merci de vous être abonné !",
+          "message.action.resubscribed": "Vous êtes de nouveau abonné.",
+          "message.action.unsubscribed": "Vous ne recevrez plus de notifications.",
+          "dialog.main.title": "Gérer les notifications du site",
+          "dialog.main.button.subscribe": "S'ABONNER",
+          "dialog.main.button.unsubscribe": "SE DÉSABONNER",
+          "dialog.blocked.title": "Débloquer les notifications",
+          "dialog.blocked.message": "Suivez ces instructions pour autoriser les notifications :"
+        }
+      },
+      welcomeNotification: {
+        title: "ActuaireX",
+        message: "Bienvenue ! Vous recevrez nos nouvelles publications.",
+        url: "https://actuairex.netlify.app"
+      },
+      promptOptions: {
+        slidedown: {
+          prompts: [
+            {
+              type: "push",
+              autoPrompt: true,
+              text: {
+                actionMessage: "Recevez une notification dès qu'ActuaireX publie un nouvel article ou ressource.",
+                acceptButton: "Oui, m'abonner",
+                cancelButton: "Plus tard"
+              },
+              delay: {
+                pageViews: 2,
+                timeDelay: 10
+              }
+            }
+          ]
+        }
+      }
+    });
+  });
+</script>
+</head>
+<body>
+<header id="bar">
+  <span class="logo" onclick="go('accueil')">ACTUAIRE<span>X</span></span>
+  <nav id="mn">
+    <a onclick="go('accueil')" data-p="accueil" class="on">Accueil</a>
+    <a onclick="go('articles')" data-p="articles">Articles</a>
+    <a onclick="go('videos')" data-p="videos">Vidéos</a>
+    <a onclick="go('projets')" data-p="projets">Projets</a>
+    <a onclick="go('apropos')" data-p="apropos">À propos</a>
+    <a onclick="go('devenir')" data-p="devenir">Devenir actuaire</a>
+    <a onclick="go('glossaire')" data-p="glossaire">Glossaire</a>
+    <a onclick="go('ressources')" data-p="ressources">Ressources</a>
+    <a href="https://actuairex.substack.com" target="_blank" style="color:var(--gr)">Newsletter ↗</a>
+    <a onclick="go('contact')" data-p="contact">Contact</a>
+  </nav>
+  <button class="hbg" onclick="tnav()" id="mbtn">☰</button>
+</header>
 
-<div id="disqus_thread" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.07);"></div>
+<!-- ACCUEIL -->
+<div id="page-accueil" class="page on">
+  <section id="hero">
+    <div class="hbg-grid"></div>
+    <div class="hglow"></div>
+    <div class="hc">
+      <div class="hey">Côte d'Ivoire · Afrique Francophone · Actuariat</div>
+      <h1 class="ht">Actuaire<em>X</em><span class="blink"></span></h1>
+      <p class="hst">Comprendre l'actuariat simplement</p>
+      <p class="hd" id="hdesc">Une plateforme dédiée à la vulgarisation de l'actuariat, de l'assurance et de la gestion des risques.</p>
+      <div class="hcta">
+        <span class="btn btn-g" onclick="go('articles')">Lire les articles</span>
+        <span class="btn btn-o" onclick="go('devenir')">Devenir actuaire</span>
+      </div>
+    </div>
+    <div class="hstats">
+      <div><div class="sn" id="sa">-</div><div class="sl2">Articles</div></div>
+      <div><div class="sn" id="sv">-</div><div class="sl2">Vidéos</div></div>
+      <div><div class="sn" id="sp">-</div><div class="sl2">Projets</div></div>
+      <div><div class="sn" id="sg">-</div><div class="sl2">Définitions</div></div>
+    </div>
+  </section>
+  <div class="hs">
+    <div class="sh"><span class="st">// Derniers articles</span><h2 class="stt">À lire</h2><div class="sl"></div></div>
+    <div class="cg" id="ha"></div>
+    <button class="sa-btn" onclick="go('articles')">Voir tous les articles →</button>
+  </div>
+  <div class="hs" style="padding-top:0">
+    <div class="sh"><span class="st">// Dernières vidéos</span><h2 class="stt">À regarder</h2><div class="sl"></div></div>
+    <div class="vg" id="hv"></div>
+    <button class="sa-btn" onclick="go('videos')">Voir toutes les vidéos →</button>
+  </div>
+  <div class="nl">
+    <div class="nli">
+      <div class="st" style="display:block;margin-bottom:1rem">// Newsletter</div>
+      <h2 class="nlti">La lettre ActuaireX</h2>
+      <p class="nld">Chaque semaine sur Substack : un article de fond, un outil pratique, une lecture incontournable. Gratuit, en français.</p>
+      <a href="https://actuairex.substack.com" target="_blank" class="btn-substack">S'abonner sur Substack →</a>
+      <p class="nlnote">Aucun spam. Désabonnement en un clic. Déjà disponible sur Substack.</p>
+    </div>
+  </div>
+
+    <div class="disqus-wrap" id="disqus-container" style="display:none">
+      <h3 class="disqus-title">Commentaires</h3>
+      <div id="disqus_thread"></div>
+    </div>
+</div>
+
+<!-- ARTICLES -->
+<div id="page-articles" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Articles</span><h2 class="stt">Actuariat expliqué simplement</h2><div class="sl"></div></div>
+    <div class="fb" id="af"></div>
+    <div class="cg" id="ag"></div>
+    <div id="ae" style="display:none;padding:4rem;text-align:center;color:var(--tm)">Aucun article dans cette catégorie.</div>
+  </div>
+</div>
+
+<!-- ARTICLE READER -->
+<div id="page-article" class="page">
+  <div class="wn">
+    <button class="back" onclick="go('articles')">← Retour aux articles</button>
+    <div id="ar"></div>
+  </div>
+</div>
+
+<!-- VIDEOS -->
+<div id="page-videos" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Vidéos</span><h2 class="stt">Contenus vidéo</h2><div class="sl"></div></div>
+    <div class="vg" id="vg"></div>
+    <div class="tkcta">
+      <div>
+        <p style="font-size:16px;color:#fff;font-family:'Playfair Display',serif;font-weight:700;margin-bottom:.5rem">Suivre ActuaireX sur TikTok</p>
+        <p>Vidéos courtes sur l'actuariat. Nouveau contenu chaque semaine.</p>
+      </div>
+      <a id="tkbtn" href="#" target="_blank" class="btn btn-g">Voir sur TikTok →</a>
+      <a id="ytbtn" href="https://youtube.com/@actuairex" target="_blank" class="btn btn-o" style="margin-left:.75rem">Voir sur YouTube -&gt;</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROJETS -->
+<div id="page-projets" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Projets</span><h2 class="stt">Projets &amp; Outils</h2><div class="sl"></div></div>
+    <div id="pjl"></div>
+  </div>
+</div>
+
+<!-- A PROPOS -->
+<div id="page-apropos" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// À propos</span><h2 class="stt">Qui est ActuaireX ?</h2><div class="sl"></div></div>
+    <div class="apg">
+      <div><div class="apav">X</div></div>
+      <div>
+        <h2 class="aph2" id="apt">-</h2>
+        <p class="apintro" id="api">-</p>
+        <div id="app"></div>
+      </div>
+    </div>
+    <div class="sh" style="margin-top:3rem"><span class="st">// Valeurs</span><h2 class="stt">Ce qui guide ActuaireX</h2><div class="sl"></div></div>
+    <div class="vg3" id="apv"></div>
+    <div class="nl-substack-box">
+      <div class="nl-substack-info">
+        <h3>Rejoindre la communauté ActuaireX</h3>
+        <p>Articles exclusifs, outils actuariels et analyses — directement dans ta boîte email. Gratuit, en français, pensé pour l'Afrique.</p>
+        <div class="stats">
+          <span class="stat">// Hebdomadaire</span>
+          <span class="stat">// Gratuit</span>
+          <span class="stat">// Substack</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:.75rem">
+        <a href="https://actuairex.substack.com" target="_blank" class="btn-substack">S'abonner gratuitement →</a>
+        <span class="substack-note">Désabonnement en 1 clic. Aucun spam.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEVENIR ACTUAIRE -->
+<div id="page-devenir" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Orientation</span><h2 class="stt">Devenir actuaire</h2><div class="sl"></div></div>
+    <p class="daint" id="dai">-</p>
+    <div id="dac"></div>
+  </div>
+</div>
+
+<!-- GLOSSAIRE -->
+<div id="page-glossaire" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Référence</span><h2 class="stt">Glossaire de l'actuariat</h2><div class="sl"></div></div>
+    <input class="gs" id="gss" placeholder="Rechercher un terme..." oninput="fg(this.value)"/>
+    <div id="gl"></div>
+  </div>
+</div>
+
+<!-- RESSOURCES -->
+<div id="page-ressources" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Boutique</span><h2 class="stt">Ressources &amp; Outils</h2><div class="sl"></div></div>
+    <div style="font-family:var(--sa);font-size:14px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:2rem;max-width:700px">
+      Tous les fichiers sont visibles gratuitement en aperçu. Le téléchargement complet est payant via <strong style="color:var(--gr)">Selar</strong> — paiement sécurisé en XOF, mobile money accepté.<br>
+      <span style="font-size:12px;color:var(--td)">Licence d'utilisation personnelle uniquement. 1 achat = 1 téléchargement.</span>
+    </div>
+    <div class="fb" id="rf"></div>
+    <div class="res-grid" id="rl"></div>
+  </div>
+</div>
+
+<!-- MODAL APERÇU -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-head">
+      <span class="modal-title" id="modal-title">Aperçu</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <div>
+        <div class="modal-price" id="modal-price"></div>
+        <div style="font-size:11px;color:var(--td);margin-top:2px">1 achat · 1 téléchargement · Usage personnel</div>
+      </div>
+      <div style="display:flex;gap:.5rem">
+        <button class="res-btn-read" onclick="closeModal()">Fermer</button>
+        <a class="res-btn-buy" id="modal-buy" href="#" target="_blank">Acheter sur Selar →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="w">
+    <div class="sh"><span class="st">// Contact</span><h2 class="stt">Parlons actuariat</h2><div class="sl"></div></div>
+    <div class="ctg">
+      <div class="cti">
+        <h3>Je suis disponible.</h3>
+        <p>Questions sur un article, collaboration, partenariat ou simplement envie d'échanger.</p>
+        <div class="cls" id="clinks"></div>
+      </div>
+      <div class="cf2">
+        <input type="text" placeholder="Ton nom" id="cn"/>
+        <input type="email" placeholder="Ton email" id="ce"/>
+        <input type="text" placeholder="Sujet" id="cs"/>
+        <textarea placeholder="Ton message..." id="cm"></textarea>
+        <button class="btn btn-g" onclick="sct()" style="align-self:flex-start">Envoyer →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PAGE 404 -->
+<div id="page-404" class="page">
+  <div class="wrap404" style="position:relative;min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div class="err-code">404</div>
+    <h1 class="err-title">Page introuvable</h1>
+    <p class="err-desc">Cette page n'existe pas ou a été déplacée.<br>Retourne à l'accueil et explore le contenu ActuaireX.</p>
+    <button class="btn btn-g" onclick="go('accueil')">Retour à l'accueil →</button>
+    <p style="margin-top:2rem;font-size:12px;color:var(--td)">
+      Tu cherches quelque chose de précis ?<br>
+      <span style="color:var(--gr);cursor:pointer" onclick="go('articles')">Articles</span> ·
+      <span style="color:var(--gr);cursor:pointer" onclick="go('glossaire')">Glossaire</span> ·
+      <span style="color:var(--gr);cursor:pointer" onclick="go('ressources')">Ressources</span> ·
+      <span style="color:var(--gr);cursor:pointer" onclick="go('contact')">Contact</span>
+    </p>
+  </div>
+</div>
+
+<!-- MENTIONS -->
+<div id="page-mentions" class="page">
+  <div class="wn">
+    <button class="back" onclick="go('accueil')">← Retour</button>
+    <div class="sh"><span class="st">// Légal</span><h2 class="stt">Mentions légales</h2><div class="sl"></div></div>
+    <div class="lb">
+      <h3>Éditeur du site</h3><p>ActuaireX — Blog personnel sur l'actuariat et l'assurance. Basé en Côte d'Ivoire.</p>
+      <h3>Hébergement</h3><p>Ce site est hébergé par Netlify, Inc. — 512 2nd Street, San Francisco, CA 94107, USA.</p>
+      <h3>Propriété intellectuelle</h3><p>Tout le contenu est la propriété d'ActuaireX sauf mention contraire. Toute reproduction sans autorisation est interdite.</p>
+      <h3>Responsabilité</h3><p>Le contenu est fourni à titre informatif uniquement. Il ne constitue pas un conseil professionnel actuariel, financier ou juridique.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIDENTIALITE -->
+<div id="page-confidentialite" class="page">
+  <div class="wn">
+    <button class="back" onclick="go('accueil')">← Retour</button>
+    <div class="sh"><span class="st">// Légal</span><h2 class="stt">Politique de confidentialité</h2><div class="sl"></div></div>
+    <div class="lb">
+      <h3>Données collectées</h3><p>ActuaireX ne collecte que les données fournies volontairement : nom et email via le formulaire de contact ou la newsletter.</p>
+      <h3>Utilisation</h3><p>Ces données sont utilisées uniquement pour répondre à tes messages ou envoyer la newsletter. Elles ne sont jamais vendues ni partagées.</p>
+      <h3>Cookies</h3><p>Ce site utilise uniquement des cookies techniques nécessaires au fonctionnement. Aucun cookie de tracking ou publicitaire n'est utilisé.</p>
+      <h3>Tes droits</h3><p>Tu peux demander la suppression de tes données à tout moment via le formulaire de contact.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© <span id="fy">2025</span> ActuaireX — Côte d'Ivoire</span>
+  <div class="fn">
+    <a onclick="go('mentions')">Mentions légales</a>
+    <a onclick="go('confidentialite')">Confidentialité</a>
+    <a onclick="go('contact')">Contact</a>
+    <a href="/sitemap.xml" target="_blank">Sitemap</a>
+  </div>
+</footer>
+
+<!-- BANDEAU COOKIES -->
+<div id="cookie-banner">
+  <div class="cookie-text">
+    <strong>ActuaireX utilise des cookies analytics.</strong>
+    Ces cookies (Google Analytics) nous aident à comprendre comment tu utilises le site.
+    Aucune donnée personnelle identifiable n'est collectée.
+    <a onclick="go('confidentialite')" style="cursor:pointer">En savoir plus</a>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn-no" onclick="refuserCookies()">Refuser</button>
+    <button class="cookie-btn-ok" onclick="accepterCookies()">Accepter</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-  var disqus_config = function () {
-    this.page.url = window.location.href;
-    this.page.identifier = "article-1"; // change selon chaque article
-  };
+var D={};
 
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://actuairex.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+function go(p,x){
+  try{if(history.pushState)history.pushState(null,null,'#'+p);}catch(e){}
+  document.querySelectorAll('.page').forEach(function(e){e.classList.remove('on')});
+  var el=document.getElementById('page-'+p);
+  if(!el)return;
+  el.classList.add('on');
+  window.scrollTo(0,0);
+  document.querySelectorAll('nav a').forEach(function(a){
+    a.classList.toggle('on',a.dataset.p===p);
+  });
+  var titles={
+    accueil:'ActuaireX - Comprendre l actuariat simplement',
+    articles:'Articles - ActuaireX',
+    videos:'Videos - ActuaireX',
+    projets:'Projets - ActuaireX',
+    apropos:'A propos - ActuaireX',
+    devenir:'Devenir actuaire - ActuaireX',
+    glossaire:'Glossaire actuariel - ActuaireX',
+    ressources:'Ressources - ActuaireX',
+    contact:'Contact - ActuaireX'
+  };
+  if(titles[p])document.title=titles[p];
+  document.getElementById('mn').classList.remove('open');
+  document.getElementById('mbtn').textContent='\u2630';
+  if(p==='article'&&x!==undefined)rart(x);
+  if(p==='calc'){calcVP();calcRente();calcPrime();calcVaR();}
+}
+
+function tnav(){
+  var n=document.getElementById('mn'),b=document.getElementById('mbtn');
+  n.classList.toggle('open');
+  b.textContent=n.classList.contains('open')?'X':'\u2630';
+}
+
+function fd(d){
+  return new Date(d).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+}
+
+async function loadAll(){
+  var files=['config','articles','videos','projets','glossaire','ressources','devenir-actuaire'];
+  var res=await Promise.all(files.map(function(f){
+    return fetch('data/'+f+'.json').then(function(r){return r.json();}).catch(function(){return null;});
+  }));
+  D.cfg=res[0]; D.arts=res[1]||[]; D.vids=res[2]||[]; D.projs=res[3]||[];
+  D.glos=res[4]||[]; D.ress=res[5]||[]; D.dev=res[6]||{};
+  D.arts.sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+  D.vids.sort(function(a,b){return new Date(b.date)-new Date(a.date);});
+  appcfg(); stats(); homearts(); homevids(); artpage(); vidpage();
+  projpage(); appage(); devpage(); glospage(); respage(); ctpage();
+  document.getElementById('fy').textContent=new Date().getFullYear();
+}
+
+function appcfg(){
+  if(!D.cfg)return;
+  var s=D.cfg.site;
+  document.getElementById('hdesc').textContent=s.description;
+  var tk=document.getElementById('tkbtn');
+  if(tk)tk.href=s.tiktok;
+  var yt=document.getElementById('ytbtn');
+  if(yt&&s.youtube)yt.href=s.youtube;
+}
+
+function stats(){
+  function sn(id,n){
+    var el=document.getElementById(id);
+    if(el)el.innerHTML=n+'<span style="color:var(--gr)">+</span>';
+  }
+  sn('sa',D.arts.length); sn('sv',D.vids.length);
+  sn('sp',D.projs.length); sn('sg',D.glos.length);
+}
+
+function acard(a){
+  return '<div class="card" onclick="go(\'article\','+a.id+')">'
+    +'<div class="cc">'+a.categorie+' - '+a.tag+'</div>'
+    +'<h3>'+a.titre+'</h3><p>'+a.resume+'</p>'
+    +'<div class="cf"><span>'+fd(a.date)+'</span>'
+    +'<span class="gr">'+a.lecture+' -&gt;</span></div></div>';
+}
+
+function vcard(v){
+  var ic=v.plateforme==='TikTok'?'&#9834;':'&#9654;';
+  return '<div class="vc" onclick="window.open(\''+v.url+'\',\'_blank\')">'
+    +'<div class="vt"><div class="vi">'+ic+'</div>'
+    +'<span class="vp">'+v.plateforme+'</span>'
+    +'<span class="vd">'+v.duree+'</span></div>'
+    +'<div class="vtitle">'+v.titre+'</div>'
+    +'<div class="vdesc">'+v.description+'</div>'
+    +'<div class="vdate">'+fd(v.date)+'</div></div>';
+}
+
+function homearts(){
+  document.getElementById('ha').innerHTML=D.arts.slice(0,3).map(acard).join('');
+}
+function homevids(){
+  document.getElementById('hv').innerHTML=D.vids.slice(0,4).map(vcard).join('');
+}
+
+function artpage(){
+  var cats=['Tous'].concat([].concat.apply([],D.arts.map(function(a){return [a.categorie];}))
+    .filter(function(v,i,a){return a.indexOf(v)===i;}));
+  document.getElementById('af').innerHTML=cats.map(function(c){
+    var active=c==='Tous'?' on':'';
+    return '<button class="fbtn'+active+' artcat" data-v="'+c+'" onclick="artCatClick(this)">'+c+'</button>';
+  }).join('');
+  artgrid(D.arts);
+}
+
+function artCatClick(btn){
+  document.querySelectorAll('.artcat').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  var c=btn.dataset.v;
+  artgrid(c==='Tous'?D.arts:D.arts.filter(function(a){return a.categorie===c;}));
+}
+
+function artgrid(list){
+  var g=document.getElementById('ag');
+  var e=document.getElementById('ae');
+  if(!list.length){g.innerHTML='';e.style.display='block';return;}
+  e.style.display='none';
+  g.innerHTML=list.map(acard).join('');
+}
+
+function rart(id){
+  var a=D.arts.find(function(x){return x.id===id;});
+  if(!a)return;
+  var ld={
+    "@context":"https://schema.org","@type":"Article",
+    "headline":a.titre,"description":a.resume,"datePublished":a.date,
+    "author":{"@type":"Person","name":"ActuaireX"},
+    "publisher":{"@type":"Person","name":"ActuaireX","url":"https://actuairex.netlify.app"}
+  };
+  var ldEl=document.getElementById('ld-article');
+  if(ldEl)ldEl.textContent=JSON.stringify(ld);
+  document.title=a.titre+' - ActuaireX';
+  var paras=a.contenu.split('\\n\\n').map(function(p){return '<p>'+p+'</p>';}).join('');
+  document.getElementById('ar').innerHTML=
+    '<div class="am">'
+    +'<span class="lbl">'+a.categorie+'</span>'
+    +'<span class="lbl lbl-g">'+a.tag+'</span>'
+    +'<span style="font-size:12px;color:var(--td)">'+fd(a.date)+'</span>'
+    +'<span style="font-size:12px;color:var(--td)">'+a.lecture+' de lecture</span></div>'
+    +'<h1 class="ati">'+a.titre+'</h1>'
+    +'<p class="ar">'+a.resume+'</p>'
+    +'<div class="ab">'+paras+'</div>';
+  if(window.DISQUS){
+    try{DISQUS.reset({reload:true,config:function(){
+      this.page.identifier='article-'+id;
+      this.page.url='https://actuairex.netlify.app/article/'+id;
+    }});}catch(e){}
+  } else {
+    loadDisqus(id,a.titre);
+  }
+}
+
+function vidpage(){
+  document.getElementById('vg').innerHTML=D.vids.map(vcard).join('');
+}
+
+function projpage(){
+  var out='';
+  D.projs.forEach(function(p){
+    var badge='<span class="lbl">'+p.categorie+'</span> <span class="lbl lbl-g">'+p.tag+'</span>';
+    var action='<span style="font-size:11px;color:var(--td)">En preparation</span>';
+    if(p.pdf){
+      action='<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjViewer(this)" data-pdf="'+p.pdf+'" data-img="" data-type="pdf" data-titre="'+p.titre+'">Consulter -&gt;</button>';
+    } else if(p.img){
+      action='<button class="btn btn-g" style="padding:8px 18px;font-size:11px;border:none;cursor:pointer" onclick="openProjViewer(this)" data-pdf="" data-img="'+p.img+'" data-type="'+p.type_fichier+'" data-titre="'+p.titre+'">Consulter -&gt;</button>';
+    }
+    out+='<div class="pj">'
+      +'<div style="display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap">'+badge+'</div>'
+      +'<h3>'+p.titre+'</h3><p>'+p.description+'</p>'
+      +'<div class="pjf"><span style="font-size:11px;color:var(--td)">'+fd(p.date)+'</span>'
+      +action+'</div></div>';
+  });
+  document.getElementById('pjl').innerHTML=out;
+}
+
+function openProjViewer(btn){
+  var titre=btn.dataset.titre;
+  var type=btn.dataset.type;
+  var pdf=btn.dataset.pdf;
+  var img=btn.dataset.img;
+  document.getElementById('modal-title').textContent=titre;
+  document.getElementById('modal-price').textContent='Consultation gratuite';
+  document.getElementById('modal-buy').style.display='none';
+  var body='';
+  if(type==='pdf'&&pdf){
+    body='<div class="pdf-reader-wrap">'
+      +'<div class="pdf-reader-toolbar">'
+      +'<span class="pdf-reader-toolbar-title">'+titre+'</span>'
+      +'<span class="pdf-reader-toolbar-badge">Consultation gratuite</span>'
+      +'</div>'
+      +'<div class="pdf-frame-container">'
+      +'<iframe class="pdf-frame" src="'+pdf+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+      +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+      +'</div>'
+      +'<div class="pdf-bottom-bar">'
+      +'<div class="pdf-bottom-note"><strong>Consultation gratuite.</strong><br>Ce rapport est disponible en lecture sur ce site.</div>'
+      +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+      +'</div></div>';
+  } else if(img){
+    body='<div style="padding:.5rem">'
+      +'<div style="font-family:var(--mo);font-size:11px;color:var(--gr);margin-bottom:1rem;letter-spacing:.08em">'+type.toUpperCase()+' - CONSULTATION GRATUITE</div>'
+      +'<img src="'+img+'" alt="'+titre+'" style="width:100%;display:block;border:1px solid var(--bd)"/>'
+      +'<div style="margin-top:1rem;padding:.75rem 1rem;background:var(--s3);border-left:2px solid var(--gr);font-family:var(--mo);font-size:11px;color:var(--tm);line-height:1.7">'
+      +'Ceci est une capture du fichier '+type+'. Consultation gratuite sur ce site.'
+      +'</div>'
+      +'<div style="margin-top:1rem;text-align:right">'
+      +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+      +'</div></div>';
+  } else {
+    body='<div style="padding:2rem;text-align:center;color:var(--tm);font-family:var(--sa)">'
+      +'<div style="font-size:2rem;margin-bottom:1rem">&#128274;</div>'
+      +'<p>Ce projet est en cours de preparation.</p>'
+      +'</div>';
+  }
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openProjPDF(btn){
+  var url=btn.dataset.pdf;
+  var titre=btn.dataset.titre;
+  document.getElementById('modal-title').textContent=titre;
+  document.getElementById('modal-price').textContent='Lecture gratuite';
+  document.getElementById('modal-buy').style.display='none';
+  document.getElementById('modal-body').innerHTML=
+    '<div class="pdf-reader-wrap">'
+    +'<div class="pdf-reader-toolbar">'
+    +'<span class="pdf-reader-toolbar-title">'+titre+'</span>'
+    +'<span class="pdf-reader-toolbar-badge">Lecture gratuite</span>'
+    +'</div>'
+    +'<div class="pdf-frame-container">'
+    +'<iframe class="pdf-frame" src="'+url+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+    +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+    +'</div>'
+    +'<div class="pdf-bottom-bar">'
+    +'<div class="pdf-bottom-note"><strong>Lecture gratuite.</strong> Ce rapport est disponible en lecture uniquement.</div>'
+    +'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+    +'</div></div>';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function appage(){
+  if(!D.cfg)return;
+  var ap=D.cfg.apropos;
+  document.getElementById('apt').textContent=ap.titre;
+  document.getElementById('api').textContent=ap.intro;
+  document.getElementById('app').innerHTML=ap.paragraphes.map(function(p){
+    return '<p class="app">'+p+'</p>';
+  }).join('');
+  document.getElementById('apv').innerHTML=ap.valeurs.map(function(v){
+    return '<div class="vc3"><div class="vic">'+v.icone+'</div><h4>'+v.titre+'</h4><p>'+v.texte+'</p></div>';
+  }).join('');
+}
+
+function devpage(){
+  var d=D.dev;
+  if(!d||!d.intro)return;
+  document.getElementById('dai').textContent=d.intro;
+  var h='';
+  h+='<div class="das"><h3>Le metier</h3>'
+    +'<p style="font-family:var(--sa);font-size:15px;font-weight:300;color:var(--tm);line-height:1.8;margin-bottom:2rem">'+d.metier.description+'</p>'
+    +'<div class="sbox"><div class="snum">&#9733;</div>'
+    +'<div class="sdesc"><strong style="color:#fff;font-family:var(--mo)">Salaire debutant</strong><br>'+d.metier.salaire_debutant+'</div></div>'
+    +'<h4 style="font-family:var(--mo);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);margin:2rem 0 1rem">Debouches</h4>'
+    +'<div class="tags">'+d.metier.debouches.map(function(x){return '<span class="tag">'+x+'</span>';}).join('')+'</div></div>';
+  h+='<div class="das"><h3>Etudes et formations</h3><div class="dag">';
+  d.etudes.forEach(function(e){
+    h+='<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">&#9672;</div>'
+      +'<h4>'+e.niveau+'</h4><p>'+e.description+'</p>'
+      +'<div style="margin-top:.75rem">'+e.exemples.map(function(x){return '<div style="font-size:11px;color:var(--gr);padding:2px 0">. '+x+'</div>';}).join('')+'</div></div>';
+  });
+  h+='</div></div>';
+  h+='<div class="das"><h3>Competences cles</h3><div class="dag">';
+  d.competences.forEach(function(c){
+    h+='<div class="dai"><div style="font-size:1.2rem;color:var(--gr);margin-bottom:.75rem">&#9673;</div><h4>'+c.domaine+'</h4><p>'+c.details+'</p></div>';
+  });
+  h+='</div></div>';
+  h+='<div class="das"><h3>Matieres etudiees</h3><div class="tags">'
+    +d.matieres.map(function(m){return '<span class="tag">'+m+'</span>';}).join('')+'</div></div>';
+  document.getElementById('dac').innerHTML=h;
+}
+
+var gdata=[];
+function glospage(){gdata=D.glos; rglos(gdata);}
+function rglos(list){
+  document.getElementById('gl').innerHTML=list.map(function(g,i){
+    return '<div class="gi" id="gi'+i+'" onclick="tg('+i+')">'
+      +'<div class="gt"><span class="lbl lbl-g" style="font-size:10px">'+g.categorie+'</span>'
+      +'<h3>'+g.terme+'</h3><span style="flex:1"></span><span class="ga">&#9658;</span></div>'
+      +'<div class="gb"><p class="gdef">'+g.definition+'</p>'
+      +'<div class="gex">'+g.exemple+'</div></div></div>';
+  }).join('');
+}
+function tg(i){document.getElementById('gi'+i).classList.toggle('op');}
+function fg(q){
+  var lq=q.toLowerCase();
+  rglos(gdata.filter(function(g){
+    return g.terme.toLowerCase().includes(lq)||g.definition.toLowerCase().includes(lq)||g.categorie.toLowerCase().includes(lq);
+  }));
+}
+
+function respage(){
+  var types=['Tous'].concat([].concat.apply([],D.ress.map(function(r){return [r.type];}))
+    .filter(function(v,i,a){return a.indexOf(v)===i;}));
+  document.getElementById('rf').innerHTML=types.map(function(t){
+    var active=t==='Tous'?' on':'';
+    return '<button class="fbtn'+active+' rescat" data-v="'+t+'" onclick="resCatClick(this)">'+t+'</button>';
+  }).join('');
+  rres(D.ress);
+}
+
+function resCatClick(btn){
+  document.querySelectorAll('.rescat').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  var t=btn.dataset.v;
+  rres(t==='Tous'?D.ress:D.ress.filter(function(r){return r.type===t;}));
+}
+
+function rres(list){
+  document.getElementById('rl').innerHTML=list.map(function(r){
+    var previewHTML='';
+    if(r.preview){
+      var previewLabel=r.type_fichier==='PDF'?'Lire le PDF gratuitement':'Voir l apercu';
+      previewHTML='<div class="res-preview" onclick="openPreview('+r.id+')">'
+        +'<img src="'+r.preview+'" alt="Apercu" onerror="this.style.display=\'none\'"/>'
+        +'<div class="res-preview-overlay"><span class="res-preview-zoom">'+previewLabel+'</span></div>'
+        +'<div class="res-wm">ACTUAIREX - '+(r.type_fichier==='PDF'?'LECTURE GRATUITE':'APERCU UNIQUEMENT')+'</div>'
+        +'</div>';
+    }
+    var btns='';
+    if(r.gratuit){
+      if(r.lien_lecture&&r.telechargeable===false){
+        btns+='<button class="res-btn-read" onclick="openPreview('+r.id+');event.stopPropagation()">Lire gratuitement</button>';
+      } else if(r.lien_lecture){
+        btns+='<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank">Telecharger -&gt;</a>';
+      }
+    } else {
+      if(r.type_fichier==='PDF'&&r.lien_lecture){
+        btns+='<button class="res-btn-read" onclick="openPreview('+r.id+');event.stopPropagation()">Lire en ligne</button>';
+      }
+      if(r.lien_achat)btns+='<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank" onclick="event.stopPropagation()">Acheter '+r.prix+' -&gt;</a>';
+    }
+    return '<div class="res-card">'
+      +previewHTML
+      +'<div class="res-body">'
+      +'<div class="res-type-row">'
+      +'<span class="lbl" style="font-size:10px">'+r.type+'</span>'
+      +'<span class="lbl lbl-g" style="font-size:10px">'+r.niveau+'</span>'
+      +(r.gratuit&&r.telechargeable===false?'<span class="lbl" style="font-size:10px;color:#2196F3;border-color:#2196F3">Lecture gratuite</span>'
+        :r.gratuit?'<span class="lbl" style="font-size:10px;color:var(--gr)">Gratuit</span>'
+        :(r.type_fichier==='PDF'?'<span class="lbl" style="font-size:10px;color:#ffb300;border-color:#ffb300">Lecture gratuite</span>'
+          :'<span class="lbl lbl-g" style="font-size:10px">'+r.prix+'</span>'))
+      +'</div>'
+      +'<div class="res-title">'+r.titre+'</div>'
+      +'<div class="res-desc">'+r.description+'</div>'
+      +'<div class="res-footer">'
+      +'<div>'
+      +(r.gratuit&&r.telechargeable===false?'<div style="font-size:11px;color:#2196F3;font-family:var(--mo)">Lecture gratuite</div>'
+            :r.gratuit?'<div class="res-price-free">Acces libre</div>'
+        :(r.type_fichier==='PDF'?'<div style="font-size:11px;color:#ffb300;font-family:var(--mo)">Lecture gratuite</div><div style="font-size:10px;color:var(--gr);font-family:var(--mo)">Telechargement '+r.prix+'</div>'
+          :'<div class="res-price">'+r.prix+'</div>'))
+      +'<div style="font-size:10px;color:var(--td);margin-top:2px">'+r.auteur+'</div>'
+      +'</div>'
+      +'<div class="res-btns">'+btns+'</div>'
+      +'</div></div></div>';
+  }).join('');
+}
+
+function openPreview(id){
+  var r=D.ress.find(function(x){return x.id===id;});
+  if(!r)return;
+  document.getElementById('modal-title').textContent=r.titre;
+  document.getElementById('modal-price').textContent=r.gratuit?'Gratuit':r.prix;
+  var buyBtn=document.getElementById('modal-buy');
+  if(r.lien_achat&&!r.gratuit){buyBtn.href=r.lien_achat;buyBtn.style.display='inline-block';}
+  else{buyBtn.style.display='none';}
+  var body='';
+  if(r.type_fichier==='PDF'&&r.lien_lecture){
+    body='<div class="pdf-reader-wrap">'
+      +'<div class="pdf-reader-toolbar">'
+      +'<span class="pdf-reader-toolbar-title">'+r.titre+'</span>'
+      +'<div style="display:flex;align-items:center;gap:.75rem">'
+      +'<span class="pdf-reader-toolbar-badge">Lecture gratuite</span>'
+      +'<span class="pdf-reader-toolbar-lock">&#128274; Telechargement protege</span>'
+      +'</div></div>'
+      +'<div class="pdf-frame-container">'
+      +'<iframe class="pdf-frame" src="'+r.lien_lecture+'#toolbar=0&navpanes=0&scrollbar=1"></iframe>'
+      +'<div class="pdf-block-overlay" oncontextmenu="return false"></div>'
+      +'</div>'
+      +'<div class="pdf-bottom-bar">'
+      +'<div class="pdf-bottom-note"><strong>Lecture gratuite.</strong><br>Pour telecharger, utilise le bouton Acheter.</div>'
+      +(r.lien_achat&&!r.gratuit?'<a href="'+r.lien_achat+'" class="res-btn-buy" target="_blank">Telecharger - '+r.prix+' -&gt;</a>'
+        :r.gratuit&&r.telechargeable===false?'<button class="res-btn-read" onclick="closeModal()">Fermer</button>'
+        :'<a href="'+r.lien_lecture+'" class="res-btn-buy" target="_blank" download>Telecharger gratuit -&gt;</a>')
+      +'</div></div>';
+  } else {
+    if(!r.gratuit){
+      body='<div class="licence-box"><strong>&#9888; Licence utilisation personnelle</strong>'
+        +'Fichier protege. 1 achat = 1 telechargement. Partage interdit. &#169; ActuaireX</div>';
+    }
+    if(r.preview){
+      body+='<img class="modal-img" src="'+r.preview+'" alt="Apercu"/>'
+        +'<div class="modal-wm-notice"><strong>Apercu en image.</strong> '
+        +'Le fichier complet ('+r.type_fichier+') contient le code source. '
+        +'Apres achat sur Selar, tu recois le fichier par email.</div>';
+    }
+  }
+  document.getElementById('modal-body').innerHTML=body;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e&&e.target!==document.getElementById('modal'))return;
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+function ctpage(){
+  if(!D.cfg)return;
+  var s=D.cfg.site;
+  var links=[];
+  if(s.email)links.push({i:'@',l:s.email,h:'mailto:'+s.email});
+  if(s.linkedin)links.push({i:'in',l:'LinkedIn / ActuaireX',h:s.linkedin});
+  if(s.tiktok)links.push({i:'tt',l:'TikTok / @actuairex',h:s.tiktok});
+  if(s.youtube)links.push({i:'yt',l:'YouTube / @actuairex',h:s.youtube});
+  if(s.selar)links.push({i:'$',l:'Boutique Selar',h:s.selar});
+  document.getElementById('clinks').innerHTML=links.map(function(lk){
+    return '<a href="'+lk.h+'" class="cl" target="_blank"><div class="ci">'+lk.i+'</div>'+lk.l+'</a>';
+  }).join('');
+}
+
+async function sct(){
+  var name=document.getElementById('cn').value;
+  var email=document.getElementById('ce').value;
+  var subject=document.getElementById('cs').value;
+  var msg=document.getElementById('cm').value;
+  if(!name||!msg){toast('Merci de remplir tous les champs.');return;}
+  var btn=document.querySelector('#page-contact .btn-g');
+  btn.textContent='Envoi...';btn.style.opacity='0.6';
+  try{
+    var r=await fetch('https://formspree.io/f/xbdzaknw',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:name,email:email,subject:subject,message:msg})
+    });
+    if(r.ok){
+      toast('Message envoye ! Je te reponds bientot.');
+      ['cn','ce','cs','cm'].forEach(function(id){document.getElementById(id).value='';});
+    } else {
+      toast('Erreur envoi. Reessaie ou contacte via LinkedIn.');
+    }
+  } catch(e){
+    toast('Erreur reseau. Verifie ta connexion.');
+  }
+  btn.textContent='Envoyer ->'; btn.style.opacity='1';
+}
+
+function sub(id){
+  var v=document.getElementById(id).value;
+  if(!v||!v.includes('@')){toast('Email invalide.');return;}
+  toast('Bienvenue dans la communaute ActuaireX !');
+  document.getElementById(id).value='';
+}
+
+function toast(m){
+  var t=document.getElementById('toast');
+  t.textContent=m; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+
+function initCookies(){
+  var consent=localStorage.getItem('ax-cookie-consent');
+  if(!consent){
+    setTimeout(function(){
+      var cb=document.getElementById('cookie-banner');
+      if(cb)cb.classList.add('show');
+    },2000);
+  } else if(consent==='accepted'){
+    enableGA();
+  }
+}
+function accepterCookies(){
+  localStorage.setItem('ax-cookie-consent','accepted');
+  var cb=document.getElementById('cookie-banner');
+  if(cb)cb.classList.remove('show');
+  enableGA();
+}
+function refuserCookies(){
+  localStorage.setItem('ax-cookie-consent','refused');
+  var cb=document.getElementById('cookie-banner');
+  if(cb)cb.classList.remove('show');
+}
+function enableGA(){
+  if(typeof gtag!=='undefined')gtag('consent','update',{'analytics_storage':'granted'});
+}
+
+function loadDisqus(articleId,articleTitle){
+  var container=document.getElementById('disqus-container');
+  if(!container)return;
+  container.style.display='block';
+  window.disqus_config=function(){
+    this.page.url='https://actuairex.netlify.app/article/'+articleId;
+    this.page.identifier='article-'+articleId;
+    this.page.title=articleTitle;
+  };
+  var d=document,s=d.createElement('script');
+  s.src='https://https-actuairex-netlify-app.disqus.com/embed.js';
+  s.setAttribute('data-timestamp',+new Date());
+  (d.head||d.body).appendChild(s);
+}
+
+function checkRoute(){
+  try{
+    var hash=window.location.hash.replace('#','');
+    if(hash&&document.getElementById('page-'+hash)){go(hash);}
+  }catch(e){}
+}
+window.addEventListener('hashchange',function(){checkRoute();});
+
+loadAll();
+initCookies();
+checkRoute();
+
 </script>
+</body>
+</html>

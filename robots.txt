@@ -1,0 +1,13 @@
+# ActuaireX — robots.txt
+# Autorise tous les moteurs de recherche à indexer le site
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://actuairex.netlify.app/sitemap.xml
+
+# Fichiers à ne pas indexer
+Disallow: /data/
+Disallow: /fichiers/
+Disallow: /templates/

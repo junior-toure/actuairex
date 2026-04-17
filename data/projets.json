@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titre": "Modélisation de la table de mortalité TD88-90",
+    "categorie": "Rapport PDF",
+    "tag": "Vie",
+    "date": "2026-03-17",
+    "description": "Rapport complet sur la reconstruction et l'analyse des tables de mortalité françaises. Ajustement des lois de Makeham et Gompertz avec implémentation en R.",
+    "pdf": "",
+    "disponible": false
+  },
+  {
+    "id": 2,
+    "titre": "Outil automatisé de calcul des provisions pour primes",
+    "categorie": "Rapport PDF",
+    "tag": "IARD",
+    "date": "2026-03-17",
+    "description": "Ce projet consiste à développer un outil automatisé permettant de calculer les provisions pour primes de manière fiable et efficace. Il vise à réduire les erreurs manuelles, améliorer la rapidité de traitement des données et assurer une meilleure conformité aux règles de gestion.",
+    "pdf": "",
+    "disponible": false
+  },
+  {
+    "id": 4,
+    "titre": "Comparateur de méthodes de provisionnement des sinistres",
+    "categorie": "Rapport PDF",
+    "tag": "IARD",
+    "date": "2026-03-17",
+    "description": "Ce projet consiste à analyser et comparer différentes méthodes de provisionnement des sinistres afin d’identifier les approches les plus adaptées selon les contextes. Il permet d’évaluer la précision, la robustesse et les limites de chaque méthode, tout en aidant à la prise de décision actuarielle.",
+    "pdf": "",
+    "disponible": false
+  }
+]

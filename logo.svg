@@ -1,0 +1,28 @@
+<svg width="400" height="160" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Fond noir -->
+  <rect width="400" height="160" fill="#050505"/>
+
+  <!-- Carré vert avec X -->
+  <rect x="24" y="28" width="60" height="60" fill="#00e676"/>
+  <line x1="34" y1="38" x2="74" y2="78" stroke="#050505" stroke-width="5" stroke-linecap="round"/>
+  <line x1="74" y1="38" x2="34" y2="78" stroke="#050505" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Nom -->
+  <text x="102" y="63" font-family="'Playfair Display', Georgia, serif" font-size="38" font-weight="900" font-style="italic">
+    <tspan fill="#ffffff">Actuaire</tspan><tspan fill="#00e676">X</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="103" y="84" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#888880" letter-spacing="0.18em">SCIENCE ACTUARIELLE</text>
+
+  <!-- Ligne séparatrice -->
+  <line x1="103" y1="96" x2="376" y2="96" stroke="#00e676" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Pays -->
+  <text x="103" y="112" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#444440" letter-spacing="0.14em">CÔTE D'IVOIRE</text>
+
+  <!-- Bordure verte discrète -->
+  <rect x="1" y="1" width="398" height="158" fill="none" stroke="#00e676" stroke-width="0.5" opacity="0.2"/>
+
+</svg>
